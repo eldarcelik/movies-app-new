@@ -2,11 +2,15 @@ Movies and TV Shows
 =================
 
 Movies and TV Shows app illustrating Web development best practices using React and Typescript.
+[Live Demo](https://movies-and-tv-shows.netlify.app/)
 
 Introduction
 ------------
 
 The app have functionalities of displaying the top 10 rated TV shows and the top 10 movies, a search function for both, and a detail view for individual items.
+
+<img src="src/assets/Screenshot-Home.png" />
+<img src="src/assets/Screenshot-Detail.png" />
 
 ### Getting Started
 1. Clone or download this repository.
