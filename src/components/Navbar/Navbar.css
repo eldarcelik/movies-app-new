@@ -33,6 +33,8 @@
 }
 
 .navbar-button-item {
+  display: inline-flex;
+  align-items: center;
   height: 35px;
   margin: 0 5px;
   padding: 10px 24px;

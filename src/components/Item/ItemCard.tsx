@@ -16,7 +16,7 @@ export default function ItemCard({ item }: any) {
 
         <div className='title-container'>
           <h1 className='title'>{title || name}</h1>
-          {vote_average > 0 && <Vote voteValue={vote_average} />}
+          {vote_average > 0 && <Vote voteValue={Math.round(vote_average * 10) / 10} />}
         </div>
       </div>
     </Link>

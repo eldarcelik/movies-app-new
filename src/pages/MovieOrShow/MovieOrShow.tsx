@@ -58,7 +58,7 @@ export default function MovieOrShow(props: any) {
     <div>
       <h1 className='item-title'>
         {item.name || item.title}
-        {item.vote_average > 0 && <Vote voteValue={item.vote_average} />}
+        {item.vote_average > 0 && <Vote voteValue={Math.round(item.vote_average * 10) / 10} />}
       </h1>
       <hr />
       <p className='release'>
