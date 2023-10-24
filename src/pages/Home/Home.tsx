@@ -12,16 +12,13 @@ export default function Home() {
   const data = contentType === CONTENT_TYPE.TV_SHOW ? (shows as IShow[]) : (movies as IMovie[]);
 
   // Display movies/tv shows as item cards
-  // @ts-ignore
   const items = data.map((item) => {
     return <ItemCard key={item.id} item={item} />;
   });
 
-  if (loading) {
-    return <Loading />;
-  }
-
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <>
       <Navbar />
       <section className='grid-container'>{items}</section>
