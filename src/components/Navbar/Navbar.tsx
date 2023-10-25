@@ -32,9 +32,8 @@ export default function Navbar() {
     setSearch(event.currentTarget.value);
   };
 
-  const setButtonClassName = (content: boolean) => {
-    return content ? 'navbar-button-item active' : 'navbar-button-item';
-  };
+  const setButtonClassName = (content: boolean) => (content ? 'navbar-button-item active' : 'navbar-button-item');
+
   return (
     <div className='navbar'>
       <div className='navbar-buttons-container'>
