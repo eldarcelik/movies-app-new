@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { MoviesShowsContext } from '../../Context';
-import { CONTENT_TYPE, SHOW_PLACEHOLDER, MOVIE_PLACEHOLDER } from '../../constants';
-import { NavbarState } from '../../types';
+import { MoviesShowsContext } from 'Context';
+import { CONTENT_TYPE, SHOW_PLACEHOLDER, MOVIE_PLACEHOLDER } from 'constantValues';
+import { NavbarState } from 'types';
 import './Navbar.css';
 
 export default function Navbar() {

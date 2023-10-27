@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { MoviesShowsContext } from '../../Context';
-import { IMAGE_PATH, DEFAULT_IMAGE } from '../../constants';
-import Vote from '../../components/Vote/Vote';
+import { MoviesShowsContext } from 'Context';
+import { IMAGE_PATH, DEFAULT_IMAGE } from 'constantValues';
+import Vote from 'components/Vote/Vote';
 import './ItemCard.css';
 
 export default function ItemCard({ item }: any) {
