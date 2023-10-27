@@ -1,3 +1,1 @@
-export function calculateAverageVote(vote: number): number {
-  return Math.round(vote * 10) / 10;
-}
+export const calculateAverageVote = (vote: number): number => Math.round(vote * 10) / 10;

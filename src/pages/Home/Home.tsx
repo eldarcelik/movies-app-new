@@ -12,9 +12,7 @@ export default function Home() {
   const data = contentType === CONTENT_TYPE.TV_SHOW ? (shows as IShow[]) : (movies as IMovie[]);
 
   // Display movies/tv shows as item cards
-  const items = data.map((item) => {
-    return <ItemCard key={item.id} item={item} />;
-  });
+  const items = data.map((item) => <ItemCard key={item.id} item={item} />);
 
   return loading ? (
     <Loading />
