@@ -35,8 +35,8 @@ export default function Navbar() {
   const setButtonClassName = (content: boolean) => (content ? 'navbar-button-item active' : 'navbar-button-item');
 
   return (
-    <div className='navbar'>
-      <div className='navbar-buttons-container'>
+    <div className='navbar-container'>
+      <div className='navbar-buttons'>
         <button
           className={setButtonClassName(navbarState.showsActive)}
           value={CONTENT_TYPE.TV_SHOW}
@@ -52,7 +52,7 @@ export default function Navbar() {
           {`${MOVIE_PLACEHOLDER}s`}
         </button>
       </div>
-      <input type='text' placeholder={`Search for ${searchContent}`} value={search} onChange={onSearchChange} />
+      <input id='search-box' placeholder={`Search for ${searchContent}`} value={search} onChange={onSearchChange} />
     </div>
   );
 }

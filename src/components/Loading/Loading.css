@@ -7,3 +7,8 @@
   justify-content: center;
   margin: 150px auto;
 }
+
+.loading img {
+  height: 100px;
+  width: 100px;
+}
