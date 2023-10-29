@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { MoviesShowsContext } from '../../Context';
-import { CONTENT_TYPE, SHOW_PLACEHOLDER, MOVIE_PLACEHOLDER } from '../../constants';
-import { NavbarState } from '../../types';
+import { MoviesShowsContext } from 'Context';
+import { CONTENT_TYPE, SHOW_PLACEHOLDER, MOVIE_PLACEHOLDER } from 'constantValues';
+import { NavbarState } from 'types';
 import './Navbar.css';
 
 export default function Navbar() {
@@ -31,12 +31,11 @@ export default function Navbar() {
     setSearch(value);
   };
 
-  const setButtonClassName = (content: boolean) => {
-    return content ? 'navbar-button-item active' : 'navbar-button-item';
-  };
+  const setButtonClassName = (content: boolean) => (content ? 'navbar-button-item active' : 'navbar-button-item');
+
   return (
     <div className='navbar-container'>
-      <div className='navbar-buttons'>
+      <div className='navbar-buttons-container'>
         <button
           className={setButtonClassName(navbarState.showsActive)}
           value={CONTENT_TYPE.TV_SHOW}

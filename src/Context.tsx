@@ -7,7 +7,7 @@ import {
   DELAY,
   MIN_SEARCH_CHARACTERS,
   QUERY_TYPE,
-} from './constants';
+} from './constantValues';
 import { ContextProps, AppContextInterface, IShow, IMovie } from './types';
 
 const MoviesShowsContext = createContext({} as AppContextInterface);
