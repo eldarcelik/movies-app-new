@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { MoviesShowsContext } from 'Context';
-import Navbar from 'components/Navbar/Navbar';
 import ItemCard from 'components/Item/ItemCard';
 import Loading from 'components/Loading/Loading';
+import Navbar from 'components/Navbar/Navbar';
 import { CONTENT_TYPE } from 'constantValues';
+import { MoviesShowsContext } from 'Context';
 import { IShow, IMovie, ItemType } from 'types';
 import './Home.css';
 

@@ -6,7 +6,9 @@
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings"
     ],
     "overrides": [
     ],
@@ -21,9 +23,25 @@
     "plugins": [
         "react",
         "react-hooks",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "import"
     ],
     "rules": {
+        "import/order": [
+            "error",
+            {
+                "newlines-between": "ignore",
+                "groups": [
+                    "builtin",
+                    "external",
+                    "internal",
+                    ["parent", "sibling", "index"],
+                    "object"
+                ],
+                "alphabetize": { "order": "asc", "caseInsensitive": true },
+                "warnOnUnassignedImports": true
+            }
+        ]
     },
     "settings": {
         "react": {

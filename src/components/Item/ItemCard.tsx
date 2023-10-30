@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { MoviesShowsContext } from 'Context';
 import Vote from 'components/Vote/Vote';
-import { calculateAverageVote } from 'helpers';
 import { IMAGE_PATH, DEFAULT_IMAGE } from 'constantValues';
-import './ItemCard.css';
+import { MoviesShowsContext } from 'Context';
+import { calculateAverageVote } from 'helpers';
 import { ItemType } from 'types';
+import './ItemCard.css';
 
 type ItemCardProps = {
   item: ItemType;
