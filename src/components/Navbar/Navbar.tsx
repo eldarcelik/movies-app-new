@@ -35,7 +35,7 @@ export default function Navbar() {
 
   return (
     <div className='navbar-container'>
-      <div className='navbar-buttons-container'>
+      <div className='navbar-buttons'>
         <button
           className={setButtonClassName(navbarState.showsActive)}
           value={CONTENT_TYPE.TV_SHOW}
