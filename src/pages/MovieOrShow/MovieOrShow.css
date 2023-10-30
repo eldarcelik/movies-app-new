@@ -56,8 +56,12 @@
   padding: 3rem;
   min-height: 550px;
   background-color: var(--secondary-color);
-  -webkit-box-shadow: 0 2px 4px 0 rgba(255, 255, 255, 0.2), 0 3px 10px 0 rgba(255, 255, 255, 0.19);
-  box-shadow: 0 2px 4px 0 rgba(255, 255, 255, 0.2), 0 3px 10px 0 rgba(255, 255, 255, 0.19);
+  -webkit-box-shadow:
+    0 2px 4px 0 rgba(255, 255, 255, 0.2),
+    0 3px 10px 0 rgba(255, 255, 255, 0.19);
+  box-shadow:
+    0 2px 4px 0 rgba(255, 255, 255, 0.2),
+    0 3px 10px 0 rgba(255, 255, 255, 0.19);
 }
 
 .item-media {
@@ -139,7 +143,7 @@ hr {
     padding: 5px 12px;
     font-size: 0.8rem;
   }
-    
+
   .item-content {
     padding: 2rem;
   }
