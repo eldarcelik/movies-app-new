@@ -1,12 +1,21 @@
 import React, { useContext } from 'react';
+
 import { Link } from 'react-router-dom';
-import { MoviesShowsContext } from 'Context';
+
 import Vote from 'components/Vote/Vote';
-import { calculateAverageVote } from 'helpers';
 import { IMAGE_PATH, DEFAULT_IMAGE } from 'constantValues';
+import { MoviesShowsContext } from 'Context';
+import { calculateAverageVote } from 'helpers';
+import { ItemType } from 'types';
+
 import './ItemCard.css';
 
-export default function ItemCard({ item }: any) {
+type ItemCardProps = {
+  item: ItemType;
+  key: number;
+};
+
+export default function ItemCard({ item }: ItemCardProps) {
   const { contentType } = useContext(MoviesShowsContext);
   const { id, poster_path, title, name, vote_average } = item;
 
