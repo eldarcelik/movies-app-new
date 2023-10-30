@@ -1,0 +1,8 @@
+# Ignore node_modules as it contains third-party packages
+
+node_modules/
+
+# Ignore build/ or dist/ directories where your compiled code resides
+
+build/
+dist/
