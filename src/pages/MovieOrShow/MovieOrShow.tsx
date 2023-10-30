@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { MoviesShowsContext } from 'Context';
-import { API_KEY, IMAGE_PATH, DEFAULT_IMAGE } from 'constantValues';
 import { Link, useParams } from 'react-router-dom';
+import { MoviesShowsContext } from 'Context';
 import Loading from 'components/Loading/Loading';
 import Vote from 'components/Vote/Vote';
+import { calculateAverageVote } from 'helpers';
+import { API_KEY, IMAGE_PATH, DEFAULT_IMAGE } from 'constantValues';
 import './MovieOrShow.css';
 
 export default function MovieOrShow() {
@@ -35,20 +36,15 @@ export default function MovieOrShow() {
   const displayVideoOrImage =
     item.videos.results.length === 0 ? (
       <img
-        className='center-media picture'
+        className='item-media picture'
         src={item.poster_path ? `${IMAGE_PATH}${item.poster_path}` : DEFAULT_IMAGE}
         alt={item.title || item.name}
-        width='400px'
-        height='100%'
       />
     ) : (
       <iframe
         title='video'
-        className='center-media video'
-        width='100%'
-        height='100%'
+        className='item-media video'
         src={`https://www.youtube.com/embed/${video}`}
-        frameBorder='0'
         allowFullScreen
       ></iframe>
     );
@@ -58,22 +54,24 @@ export default function MovieOrShow() {
     <div>
       <h1 className='item-title'>
         {item.name || item.title}
-        {item.vote_average > 0 && <Vote voteValue={Math.round(item.vote_average * 10) / 10} />}
+        {item.vote_average > 0 && <Vote voteValue={calculateAverageVote(item.vote_average)} />}
       </h1>
       <hr />
-      <p className='release'>
+      <p className='item-release'>
         {item.release_date
           ? `Release Date: ${item.release_date}`
           : `First Air Date: ${item.first_air_date} \nLast Air Date: ${item.last_air_date}`}
       </p>
-      <p className='overview'>{item.overview.length > 0 ? item.overview : 'No additional information available.'}</p>
+      <p className='item-overview'>
+        {item.overview.length > 0 ? item.overview : 'No additional information available.'}
+      </p>
     </div>
   );
 
   return (
-    <div className='bcg'>
+    <div className='content-bcg'>
       <div className='content-container'>
-        <div style={{ background: '#1c2237' }}>
+        <div className='button-back-container'>
           <Link to='/'>
             <button className='button-back'>&lt; Back</button>
           </Link>

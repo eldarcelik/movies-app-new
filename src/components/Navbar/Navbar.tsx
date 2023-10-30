@@ -13,9 +13,8 @@ export default function Navbar() {
   const searchContent = contentType === CONTENT_TYPE.TV_SHOW ? SHOW_PLACEHOLDER : MOVIE_PLACEHOLDER;
 
   // Handle content for tv shows or movies and change button style to active
-  const handleContent = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleContent = ({ currentTarget: { value } }: React.MouseEvent<HTMLButtonElement>) => {
     // Use value and set content to "tv" or "movie"
-    const { value } = event.currentTarget;
     setContentType(value);
 
     // Check content type on button you clicked and set it to the opposite value
@@ -28,15 +27,15 @@ export default function Navbar() {
   };
 
   // Handle typing in search box and set it in context
-  const onSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.currentTarget.value);
+  const onSearchChange = ({ currentTarget: { value } }: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(value);
   };
 
   const setButtonClassName = (content: boolean) => (content ? 'navbar-button-item active' : 'navbar-button-item');
 
   return (
-    <div className='navbar'>
-      <div className='navbar-buttons-container'>
+    <div className='navbar-container'>
+      <div className='navbar-buttons'>
         <button
           className={setButtonClassName(navbarState.showsActive)}
           value={CONTENT_TYPE.TV_SHOW}
@@ -52,7 +51,7 @@ export default function Navbar() {
           {`${MOVIE_PLACEHOLDER}s`}
         </button>
       </div>
-      <input type='text' placeholder={`Search for ${searchContent}`} value={search} onChange={onSearchChange} />
+      <input id='search-box' placeholder={`Search for ${searchContent}`} value={search} onChange={onSearchChange} />
     </div>
   );
 }

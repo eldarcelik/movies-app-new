@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { MoviesShowsContext } from 'Context';
-import { IMAGE_PATH, DEFAULT_IMAGE } from 'constantValues';
 import Vote from 'components/Vote/Vote';
+import { calculateAverageVote } from 'helpers';
+import { IMAGE_PATH, DEFAULT_IMAGE } from 'constantValues';
 import './ItemCard.css';
 
 export default function ItemCard({ item }: any) {
@@ -11,12 +12,11 @@ export default function ItemCard({ item }: any) {
 
   return (
     <Link to={`/${contentType}/${item.id}`} className='no-decoration'>
-      <div key={id} className='item item-container'>
-        <img className='image' src={poster_path ? `${IMAGE_PATH}${poster_path}` : DEFAULT_IMAGE} alt={name || title} />
-
+      <div key={id} className='item-container'>
+        <img src={poster_path ? `${IMAGE_PATH}${poster_path}` : DEFAULT_IMAGE} alt={name || title} />
         <div className='title-container'>
           <h1 className='title'>{title || name}</h1>
-          {vote_average > 0 && <Vote voteValue={Math.round(vote_average * 10) / 10} />}
+          {vote_average > 0 && <Vote voteValue={calculateAverageVote(vote_average)} />}
         </div>
       </div>
     </Link>
