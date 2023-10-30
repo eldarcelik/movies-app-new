@@ -1,7 +1,9 @@
 import React, { useContext, useState } from 'react';
+
 import { CONTENT_TYPE, SHOW_PLACEHOLDER, MOVIE_PLACEHOLDER } from 'constantValues';
 import { MoviesShowsContext } from 'Context';
 import { NavbarState } from 'types';
+
 import './Navbar.css';
 
 export default function Navbar() {

@@ -7,8 +7,7 @@
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:import/errors",
-        "plugin:import/warnings"
+        "plugin:import/recommended"
     ],
     "overrides": [
     ],
@@ -30,7 +29,7 @@
         "import/order": [
             "error",
             {
-                "newlines-between": "ignore",
+                "newlines-between": "always",
                 "groups": [
                     "builtin",
                     "external",
@@ -38,6 +37,14 @@
                     ["parent", "sibling", "index"],
                     "object"
                 ],
+                "pathGroups": [
+                    {
+                        "pattern": "react",
+                        "group": "external",
+                        "position": "before"
+                    }
+                ],
+                "pathGroupsExcludedImportTypes": ["react"],
                 "alphabetize": { "order": "asc", "caseInsensitive": true },
                 "warnOnUnassignedImports": true
             }
