@@ -38,7 +38,7 @@ function MoviesShowsProvider({ children }: ContextProps) {
           setMovies(items);
         }
       })
-      .catch((error) => {
+      .catch(() => {
         // TODO: Handle errors
       })
       .finally(() => {

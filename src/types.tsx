@@ -16,7 +16,7 @@ export interface IShow extends IData {
 }
 
 interface IVideos {
-  results: Array<Object>;
+  results: Array<object>;
 }
 
 export interface IMovie extends IData {

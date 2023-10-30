@@ -22,7 +22,7 @@ export default function MovieOrShow() {
         // Set video key to use in React Player url
         setVideo(data.videos.results[0].key);
       })
-      .catch((error) => {
+      .catch(() => {
         // TODO: Handle error
       });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
