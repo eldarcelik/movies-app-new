@@ -4,6 +4,7 @@ import { MoviesShowsContext } from 'Context';
 import Loading from 'components/Loading/Loading';
 import Vote from 'components/Vote/Vote';
 import { calculateAverageVote } from 'helpers';
+import { ItemType } from 'types';
 import { API_KEY, IMAGE_PATH, DEFAULT_IMAGE } from 'constantValues';
 import './MovieOrShow.css';
 
@@ -11,7 +12,7 @@ export default function MovieOrShow() {
   const { contentType } = useContext(MoviesShowsContext);
   const { id } = useParams();
   const [video, setVideo] = useState<string | number>();
-  const [item, setItem] = useState<any>();
+  const [item, setItem] = useState<ItemType>();
   const ITEM_URL = `https://api.themoviedb.org/3/${contentType}/${id}?api_key=${API_KEY}&append_to_response=videos`;
 
   useEffect(() => {

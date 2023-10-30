@@ -43,3 +43,5 @@ export type NavbarState = {
   moviesActive: boolean;
   showsActive: boolean;
 };
+
+export type ItemType = IMovie & IShow;

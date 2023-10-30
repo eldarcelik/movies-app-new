@@ -5,8 +5,14 @@ import Vote from 'components/Vote/Vote';
 import { calculateAverageVote } from 'helpers';
 import { IMAGE_PATH, DEFAULT_IMAGE } from 'constantValues';
 import './ItemCard.css';
+import { ItemType } from 'types';
 
-export default function ItemCard({ item }: any) {
+type ItemCardProps = {
+  item: ItemType;
+  key: number;
+};
+
+export default function ItemCard({ item }: ItemCardProps) {
   const { contentType } = useContext(MoviesShowsContext);
   const { id, poster_path, title, name, vote_average } = item;
 
