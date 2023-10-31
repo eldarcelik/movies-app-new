@@ -1,6 +1,6 @@
 .loading {
   display: -webkit-box;
-  display: -ms-flexbox;
+  display: flexbox;
   display: flex;
   -webkit-box-pack: center;
   -ms-flex-pack: center;

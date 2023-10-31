@@ -4,7 +4,7 @@
   width: 100%;
   min-width: 300px;
   display: -webkit-box;
-  display: -ms-flexbox;
+  display: flexbox;
   display: flex;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
@@ -14,7 +14,6 @@
   align-items: center;
   padding: 0 50px;
   font-size: 1.2rem;
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 1;
@@ -22,7 +21,7 @@
 
 .navbar-buttons {
   display: -webkit-box;
-  display: -ms-flexbox;
+  display: flexbox;
   display: flex;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
@@ -63,8 +62,6 @@
   border-radius: 8px;
   outline: none;
   background-color: var(--secondary-color);
-  -webkit-transition: width 0.4s ease-in-out;
-  -o-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
 }
 

@@ -9,7 +9,9 @@
     "eject": "react-scripts eject",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint:fix": "eslint --fix .",
+    "stylelint": "stylelint **/*.css",
+    "stylelint:fix": "stylelint --fix **/*.css"
   },
   "eslintConfig": {
     "extends": [
@@ -53,6 +55,9 @@
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react": "^7.33.2",
+    "stylelint": "^14.16.1",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-standard": "^29.0.0",
     "react-scripts": "^5.0.1"
   }
 }
