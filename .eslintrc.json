@@ -7,10 +7,10 @@
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:import/recommended"
+        "plugin:import/recommended",
+        "plugin:prettier/recommended"
     ],
-    "overrides": [
-    ],
+    "overrides": [],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaFeatures": {
@@ -23,7 +23,8 @@
         "react",
         "react-hooks",
         "@typescript-eslint",
-        "import"
+        "import",
+        "prettier"
     ],
     "rules": {
         "import/order": [
@@ -34,7 +35,11 @@
                     "builtin",
                     "external",
                     "internal",
-                    ["parent", "sibling", "index"],
+                    [
+                        "parent",
+                        "sibling",
+                        "index"
+                    ],
                     "object"
                 ],
                 "pathGroups": [
@@ -44,10 +49,19 @@
                         "position": "before"
                     }
                 ],
-                "pathGroupsExcludedImportTypes": ["react"],
-                "alphabetize": { "order": "asc", "caseInsensitive": true },
+                "pathGroupsExcludedImportTypes": [
+                    "react"
+                ],
+                "alphabetize": {
+                    "order": "asc",
+                    "caseInsensitive": true
+                },
                 "warnOnUnassignedImports": true
             }
+        ],
+        "comma-dangle": [
+            "error",
+            "only-multiline"
         ]
     },
     "settings": {
@@ -56,8 +70,16 @@
         },
         "import/resolver": {
             "node": {
-                "extensions": [".js", ".jsx", ".ts", ".tsx"],
-                "moduleDirectory": ["node_modules", "src"]
+                "extensions": [
+                    ".js",
+                    ".jsx",
+                    ".ts",
+                    ".tsx"
+                ],
+                "moduleDirectory": [
+                    "node_modules",
+                    "src"
+                ]
             }
         }
     }
