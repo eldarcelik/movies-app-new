@@ -23,7 +23,8 @@
         "react",
         "react-hooks",
         "@typescript-eslint",
-        "import"
+        "import",
+        "prettier"
     ],
     "rules": {
         "import/order": [
