@@ -1,8 +1,8 @@
 .grid-container {
-  width: 90vw;
-  margin: 35px auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   grid-gap: 2.5rem 3rem;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   justify-items: center;
+  margin: 35px auto;
+  width: 90vw;
 }

@@ -1,51 +1,51 @@
 .navbar-container {
+  align-items: center;
   background-color: var(--primary-color);
-  height: 80px;
-  width: 100%;
-  min-width: 300px;
+  -webkit-box-align: center;
+  -webkit-box-pack: justify;
   display: -webkit-box;
   display: flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center;
-  padding: 0 50px;
+  -ms-flex-pack: justify;
   font-size: 1.2rem;
+  height: 80px;
+  justify-content: space-between;
+  min-width: 300px;
+  padding: 0 50px;
   position: sticky;
   top: 0;
+  width: 100%;
   z-index: 1;
 }
 
 .navbar-buttons {
+  align-items: center;
+  -webkit-box-align: center;
+  -webkit-box-pack: justify;
   display: -webkit-box;
   display: flexbox;
   display: flex;
-  -webkit-box-pack: justify;
+  -ms-flex-align: center;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
 }
 
 .navbar-button-item {
-  display: inline-flex;
   align-items: center;
-  height: 35px;
-  margin: 0 5px;
-  padding: 0.8rem 1.2rem;
-  font-size: 1rem;
-  white-space: nowrap;
-  text-align: center;
   background-color: var(--secondary-color);
-  color: var(--primary-color);
   border: none;
   border-radius: 8px;
-  outline: none;
+  color: var(--primary-color);
   cursor: pointer;
+  display: inline-flex;
+  font-size: 1rem;
+  height: 35px;
+  margin: 0 5px;
+  outline: none;
+  padding: 0.8rem 1.2rem;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .active {
@@ -54,15 +54,15 @@
 }
 
 #search-box {
-  height: 35px;
-  width: 200px;
-  margin-left: auto;
-  padding: 0.5rem 1rem;
+  background-color: var(--secondary-color);
   border: none;
   border-radius: 8px;
+  height: 35px;
+  margin-left: auto;
   outline: none;
-  background-color: var(--secondary-color);
+  padding: 0.5rem 1rem;
   transition: width 0.4s ease-in-out;
+  width: 200px;
 }
 
 #search-box:focus {
@@ -77,8 +77,8 @@
 
 @media screen and (max-width: 640px) {
   .navbar-button-item {
-    padding: 5px 12px;
     font-size: 1rem;
+    padding: 5px 12px;
   }
 
   #search-box,
@@ -94,18 +94,18 @@
   }
 
   .navbar-button-item {
+    font-size: 1rem;
     height: 25px;
     margin: 0 5px 0 0;
     padding: 5px 10px;
-    font-size: 1rem;
   }
 
   #search-box {
+    font-size: 1rem;
     height: 25px;
-    width: 160px;
     margin: 0;
     padding: 5px 10px;
-    font-size: 1rem;
+    width: 160px;
   }
 
   #search-box:focus {
