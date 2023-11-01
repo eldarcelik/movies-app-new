@@ -1,8 +1,8 @@
 .loading {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-pack: center;
+  display: -webkit-box;
+  display: flexbox;
+  display: flex;
   -ms-flex-pack: center;
   justify-content: center;
   margin: 150px auto;

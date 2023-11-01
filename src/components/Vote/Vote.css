@@ -1,14 +1,13 @@
 .vote-average {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-align: center;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
   color: var(--danger-color);
+  display: -webkit-box;
+  display: flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  flex-direction: column;
   font-size: 1rem;
 }
