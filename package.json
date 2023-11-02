@@ -7,29 +7,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --write . --config ./.prettierrc",
+    "format": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "stylelint": "stylelint **/*.css",
-    "stylelint:fix": "stylelint --fix **/*.css"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "stylelint:fix": "stylelint --fix **/*.css",
+    "prepare": "husky install",
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -37,7 +21,9 @@
     "react-router-dom": "^6.17.0"
   },
   "devDependencies": {
-    "typescript": "^4.9.5",
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.5.1",
     "@types/jest": "^29.5.6",
     "@types/node": "^20.8.7",
     "@types/react": "^18.2.31",
@@ -45,20 +31,20 @@
     "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "@testing-library/jest-dom": "^6.1.4",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.5.1",
-    "prettier": "^3.0.3",
     "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react": "^7.33.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.0.2",
+    "prettier": "^3.0.3",
+    "react-scripts": "^5.0.1",
     "stylelint": "^14.16.1",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^29.0.0",
     "stylelint-order": "^6.0.3",
-    "react-scripts": "^5.0.1"
+    "typescript": "^4.9.5"
   }
 }
