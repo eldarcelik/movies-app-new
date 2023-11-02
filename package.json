@@ -7,13 +7,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --write . --config ./.prettierrc",
+    "format": "prettier --write .",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "stylelint": "stylelint **/*.css",
     "stylelint:fix": "stylelint --fix **/*.css",
     "prepare": "husky install",
-    "precommit": "lint-staged --config lint-staged.config.json"
+    "precommit": "lint-staged"
   },
   "dependencies": {
     "react": "^18.2.0",
