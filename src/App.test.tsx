@@ -4,8 +4,8 @@ import { render, screen } from '@testing-library/react';
 
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders image alt content', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
+  const linkElement = screen.getByAltText(/loading/i);
   expect(linkElement).toBeInTheDocument();
 });
