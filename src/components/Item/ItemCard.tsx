@@ -3,10 +3,10 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import Vote from 'components/Vote/Vote';
-import { IMAGE_PATH, DEFAULT_IMAGE } from 'constantValues';
-import { MoviesShowsContext } from 'Context';
-import { calculateAverageVote } from 'helpers';
-import { ItemType } from 'types';
+import { IMAGE_PATH, DEFAULT_IMAGE } from 'constants/constantValues';
+import { MoviesShowsContext } from 'context/Context';
+import calculateAverageVote from 'helpers/calculateAverageVote';
+import { ItemType } from 'types/types';
 
 import './ItemCard.css';
 

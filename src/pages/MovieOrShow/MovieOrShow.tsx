@@ -4,10 +4,10 @@ import { Link, useParams } from 'react-router-dom';
 
 import Loading from 'components/Loading/Loading';
 import Vote from 'components/Vote/Vote';
-import { API_KEY, IMAGE_PATH, DEFAULT_IMAGE } from 'constantValues';
-import { MoviesShowsContext } from 'Context';
-import { calculateAverageVote } from 'helpers';
-import { ItemType } from 'types';
+import { API_KEY, IMAGE_PATH, DEFAULT_IMAGE } from 'constants/constantValues';
+import { MoviesShowsContext } from 'context/Context';
+import calculateAverageVote from 'helpers/calculateAverageVote';
+import { ItemType } from 'types/types';
 
 import './MovieOrShow.css';
 
