@@ -40,9 +40,7 @@
         },
         "warnOnUnassignedImports": true
       }
-    ],
-    "comma-dangle": ["error", "only-multiline"],
-    "eol-last": "error"
+    ]
   },
   "settings": {
     "react": {
