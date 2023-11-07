@@ -1,5 +1,7 @@
 import React, { useState, useEffect, createContext } from 'react';
 
+import { fetchData } from 'apis/fetchData';
+
 import {
   API_KEY,
   NUMBER_OF_ITEMS,
@@ -28,8 +30,7 @@ function MoviesShowsProvider({ children }: ContextProps) {
   };
 
   const getItems = (quryType: string) =>
-    fetch(QUERY_TYPE_INFO[quryType])
-      .then((res) => res.json())
+    fetchData(QUERY_TYPE_INFO[quryType])
       .then(({ results }) => {
         const items = quryType === QUERY_TYPE.TOP_RATED ? results.slice(0, NUMBER_OF_ITEMS) : results;
 
