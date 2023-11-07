@@ -3,3 +3,6 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+
+// TODO: Once the @testing-library/jest-dom lib is bumped to new major version remove line above and uncomment the line below
+// import '@testing-library/jest-dom/jest-globals'
