@@ -21,7 +21,6 @@ export default function MovieOrShow() {
 
   useEffect(() => {
     fetchData(ITEM_URL)
-      .then((res) => res.json())
       .then((data) => {
         setItem(data);
         // Set video key to use in React Player url
