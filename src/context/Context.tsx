@@ -1,7 +1,6 @@
 import React, { useState, useEffect, createContext } from 'react';
 
-import { fetchData } from 'apis/fetchData';
-
+import { fetchData } from '@/apis/fetchData';
 import {
   API_KEY,
   NUMBER_OF_ITEMS,
@@ -10,8 +9,8 @@ import {
   DELAY,
   MIN_SEARCH_CHARACTERS,
   QUERY_TYPE,
-} from '../constants/constantValues';
-import { ContextProps, AppContextInterface, IShow, IMovie } from '../types/types';
+} from '@/constants/constantValues';
+import { ContextProps, AppContextInterface, IShow, IMovie } from '@/types/types';
 
 const MoviesShowsContext = createContext({} as AppContextInterface);
 let timer: ReturnType<typeof setTimeout> | null = null;

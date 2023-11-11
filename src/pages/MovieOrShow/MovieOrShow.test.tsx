@@ -2,11 +2,11 @@ import React from 'react';
 
 import { render, screen } from '@testing-library/react';
 
-import { fetchData } from 'apis/fetchData';
+import { fetchData } from '@/apis/fetchData';
 
 import MovieOrShow from './MovieOrShow';
 
-jest.mock('apis/fetchData');
+jest.mock('@/apis/fetchData');
 
 describe('MovieOrShow component', () => {
   beforeEach(() => jest.clearAllMocks());

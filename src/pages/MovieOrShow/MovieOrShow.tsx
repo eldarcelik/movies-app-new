@@ -2,13 +2,13 @@ import React, { useState, useContext, useEffect } from 'react';
 
 import { Link, useParams } from 'react-router-dom';
 
-import { fetchData } from 'apis/fetchData';
-import Loading from 'components/Loading/Loading';
-import Vote from 'components/Vote/Vote';
-import { API_KEY, IMAGE_PATH, DEFAULT_IMAGE } from 'constants/constantValues';
-import { MoviesShowsContext } from 'context/Context';
-import calculateAverageVote from 'helpers/calculateAverageVote';
-import { ItemType } from 'types/types';
+import { fetchData } from '@/apis/fetchData';
+import Loading from '@/components/Loading/Loading';
+import Vote from '@/components/Vote/Vote';
+import { API_KEY, IMAGE_PATH, DEFAULT_IMAGE } from '@/constants/constantValues';
+import { MoviesShowsContext } from '@/context/Context';
+import calculateAverageVote from '@/helpers/calculateAverageVote';
+import { ItemType } from '@/types/types';
 
 import './MovieOrShow.css';
 
