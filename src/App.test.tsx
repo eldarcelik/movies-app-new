@@ -5,8 +5,6 @@ import { render, screen } from '@testing-library/react';
 import App from './App';
 
 describe('App component', () => {
-  beforeEach(() => jest.clearAllMocks());
-
   test('should render image alt content', async () => {
     render(<App />);
     const gifElement = screen.getByAltText(/loading/i);
