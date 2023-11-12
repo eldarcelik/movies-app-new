@@ -2,12 +2,13 @@ import React, { useState, useContext, useEffect } from 'react';
 
 import { Link, useParams } from 'react-router-dom';
 
-import Loading from 'components/Loading/Loading';
-import Vote from 'components/Vote/Vote';
-import { API_KEY, IMAGE_PATH, DEFAULT_IMAGE } from 'constantValues';
-import { MoviesShowsContext } from 'Context';
-import { calculateAverageVote } from 'helpers';
-import { ItemType } from 'types';
+import { fetchData } from '@/apis/fetchData';
+import Loading from '@/components/Loading/Loading';
+import Vote from '@/components/Vote/Vote';
+import { API_KEY, IMAGE_PATH, DEFAULT_IMAGE } from '@/constants/constantValues';
+import { MoviesShowsContext } from '@/context/Context';
+import calculateAverageVote from '@/helpers/calculateAverageVote';
+import { ItemType } from '@/types/types';
 
 import './MovieOrShow.css';
 
@@ -19,8 +20,7 @@ export default function MovieOrShow() {
   const ITEM_URL = `https://api.themoviedb.org/3/${contentType}/${id}?api_key=${API_KEY}&append_to_response=videos`;
 
   useEffect(() => {
-    fetch(ITEM_URL)
-      .then((res) => res.json())
+    fetchData(ITEM_URL)
       .then((data) => {
         setItem(data);
         // Set video key to use in React Player url

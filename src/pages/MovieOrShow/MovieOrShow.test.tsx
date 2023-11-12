@@ -4,20 +4,25 @@ import { render, screen } from '@testing-library/react';
 
 import { fetchData } from '@/apis/fetchData';
 
-import App from './App';
+import MovieOrShow from './MovieOrShow';
 
 jest.mock('@/apis/fetchData');
 
-describe('App component', () => {
+describe('MovieOrShow component', () => {
   beforeEach(() => jest.clearAllMocks());
 
-  test('should render image alt content', async () => {
+  test('should render movie or show item when api responds', async () => {
     (fetchData as jest.Mock).mockResolvedValue({
       results: [{ name: 'spiderman' }],
     });
-    render(<App />);
+    render(<MovieOrShow />);
     const gifElement = screen.getByAltText(/loading/i);
 
     expect(gifElement).toBeInTheDocument();
+
+    // TODO: Check how to implement reading API mock response
+    // await waitFor(() => {
+    //   screen.getByText('spiderman');
+    // });
   });
 });

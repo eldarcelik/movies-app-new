@@ -40,9 +40,7 @@
         },
         "warnOnUnassignedImports": true
       }
-    ],
-    "comma-dangle": ["error", "only-multiline"],
-    "eol-last": "error"
+    ]
   },
   "settings": {
     "react": {
@@ -52,7 +50,8 @@
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"],
         "moduleDirectory": ["node_modules", "src"]
-      }
+      },
+      "typescript": {}
     }
   }
 }
