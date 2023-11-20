@@ -8,8 +8,8 @@ import {
   DELAY,
   MIN_SEARCH_CHARACTERS,
   QUERY_TYPE,
-} from '@/constants/constantValues';
-import { ContextProps, AppContextInterface, IShow, IMovie } from '@/types/types';
+} from 'constants/constantValues';
+import { ContextProps, AppContextInterface, IShow, IMovie } from 'types/types';
 
 const MoviesShowsContext = createContext({} as AppContextInterface);
 let timer: ReturnType<typeof setTimeout> | null = null;

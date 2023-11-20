@@ -64,7 +64,20 @@ const show = {
   type: 'Scripted',
   vote_average: 0,
   videos: {
-    results: [],
+    results: [
+      {
+        iso_639_1: 'en',
+        iso_3166_1: 'US',
+        name: "Atlantis: Milo's Return",
+        key: 'IXIQlVsTaYw',
+        published_at: '2012-02-23T17:11:44.000Z',
+        site: 'YouTube',
+        size: 480,
+        type: 'Trailer',
+        official: true,
+        id: '571f3b509251412801000206',
+      },
+    ],
   },
 };
 

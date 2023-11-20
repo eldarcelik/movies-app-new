@@ -1,5 +1,6 @@
 export type ContextProps = {
   children: React.ReactNode;
+  value: AppContextInterface;
 };
 
 export interface IData {
