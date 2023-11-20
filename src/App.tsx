@@ -2,6 +2,8 @@ import React from 'react';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+import { AppContextInterface } from 'types/types';
+
 import './App.css';
 import { MoviesShowsProvider } from './context/Context';
 import Error from './pages/Error/Error';
@@ -11,7 +13,7 @@ import MovieOrShow from './pages/MovieOrShow/MovieOrShow';
 function App() {
   return (
     <>
-      <MoviesShowsProvider>
+      <MoviesShowsProvider value={{} as AppContextInterface}>
         <Router>
           <Routes>
             <Route path='/' element={<Home />} />

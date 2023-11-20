@@ -1,6 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react';
 
-import { fetchData } from '@/apis/fetchData';
 import {
   API_KEY,
   NUMBER_OF_ITEMS,
@@ -9,8 +8,8 @@ import {
   DELAY,
   MIN_SEARCH_CHARACTERS,
   QUERY_TYPE,
-} from '@/constants/constantValues';
-import { ContextProps, AppContextInterface, IShow, IMovie } from '@/types/types';
+} from 'constants/constantValues';
+import { ContextProps, AppContextInterface, IShow, IMovie } from 'types/types';
 
 const MoviesShowsContext = createContext({} as AppContextInterface);
 let timer: ReturnType<typeof setTimeout> | null = null;
@@ -29,7 +28,8 @@ function MoviesShowsProvider({ children }: ContextProps) {
   };
 
   const getItems = (quryType: string) =>
-    fetchData(QUERY_TYPE_INFO[quryType])
+    fetch(QUERY_TYPE_INFO[quryType])
+      .then((res) => res.json())
       .then(({ results }) => {
         const items = quryType === QUERY_TYPE.TOP_RATED ? results.slice(0, NUMBER_OF_ITEMS) : results;
 
