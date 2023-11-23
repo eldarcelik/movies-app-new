@@ -2,6 +2,15 @@ export type ContextProps = {
   children: React.ReactNode;
 };
 
+export type VoteProps = {
+  voteValue: number;
+};
+
+export type ItemCardProps = {
+  item: ItemType;
+  key: number;
+};
+
 export interface IData {
   id: number;
   overview: string;
@@ -27,15 +36,18 @@ export interface IMovie extends IData {
 
 export type AppContextInterface = {
   movies: IMovie[];
-  setMovies: (value: IMovie[]) => void;
   shows: IShow[];
-  setShows: (value: IShow[]) => void;
   activeQueryType: string;
   loading: boolean;
-  setLoading: (value: boolean) => void;
   contentType: string;
-  setContentType: (value: string) => void;
   search: string;
+};
+
+export type AppContextActionsInterface = {
+  setMovies: (value: IMovie[]) => void;
+  setShows: (value: IShow[]) => void;
+  setLoading: (value: boolean) => void;
+  setContentType: (value: string) => void;
   setSearch: (value: string) => void;
 };
 

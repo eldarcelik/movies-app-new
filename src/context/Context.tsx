@@ -1,8 +1,7 @@
 import React, { useState, useEffect, createContext } from 'react';
 
-import { fetchData } from '@/apis/fetchData';
+import { getItems } from '@/apis/getItems';
 import {
-  API_KEY,
   NUMBER_OF_ITEMS,
   CONTENT_TYPE,
   DEFAULT_SEARCH_VALUE,
@@ -10,9 +9,10 @@ import {
   MIN_SEARCH_CHARACTERS,
   QUERY_TYPE,
 } from '@/constants/constantValues';
-import { ContextProps, AppContextInterface, IShow, IMovie } from '@/types/types';
+import { ContextProps, AppContextInterface, AppContextActionsInterface, IShow, IMovie } from '@/types/types';
 
 const MoviesShowsContext = createContext({} as AppContextInterface);
+const MoviesShowsActionsContext = createContext({} as AppContextActionsInterface);
 let timer: ReturnType<typeof setTimeout> | null = null;
 
 function MoviesShowsProvider({ children }: ContextProps) {
@@ -22,29 +22,6 @@ function MoviesShowsProvider({ children }: ContextProps) {
   const [loading, setLoading] = useState<boolean>(true);
   const [contentType, setContentType] = useState<string>(CONTENT_TYPE.TV_SHOW);
   const [search, setSearch] = useState<string>(DEFAULT_SEARCH_VALUE);
-
-  const QUERY_TYPE_INFO = {
-    [QUERY_TYPE.TOP_RATED]: `https://api.themoviedb.org/3/${contentType}/top_rated?api_key=${API_KEY}&language=en-US`,
-    [QUERY_TYPE.SEARCH]: `https://api.themoviedb.org/3/search/${contentType}?api_key=${API_KEY}&language=en-US&query=${search}`,
-  };
-
-  const getItems = (quryType: string) =>
-    fetchData(QUERY_TYPE_INFO[quryType])
-      .then(({ results }) => {
-        const items = quryType === QUERY_TYPE.TOP_RATED ? results.slice(0, NUMBER_OF_ITEMS) : results;
-
-        if (contentType === CONTENT_TYPE.TV_SHOW) {
-          setShows(items);
-        } else {
-          setMovies(items);
-        }
-      })
-      .catch(() => {
-        // TODO: Handle errors
-      })
-      .finally(() => {
-        setLoading(false);
-      });
 
   useEffect(() => {
     const queryType = search.length >= MIN_SEARCH_CHARACTERS ? QUERY_TYPE.SEARCH : QUERY_TYPE.TOP_RATED;
@@ -59,48 +36,68 @@ function MoviesShowsProvider({ children }: ContextProps) {
     // The search is performed only when there are 3 or more characters in the search bar
     // It should be triggered only one second after the user has stopped typing
     if (queryType === QUERY_TYPE.SEARCH) {
-      timer = setTimeout(
-        () =>
-          getItems(queryType).then(() => {
-            if (timer) {
-              clearTimeout(timer);
-              timer = null;
-            }
-          }),
-        DELAY,
-      );
+      timer = setTimeout(() => getItemsDataAndClearTimer(queryType), DELAY);
     } // Prevent getting top 10 items multiple times if there are 2 or less characters in the search bar
     else if (queryType !== activeQueryType) {
-      getItems(queryType);
+      getItemsData(queryType);
     }
-  }, [search, activeQueryType]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [search, activeQueryType]);
 
   // Triggered on switching between tabs
   useEffect(() => {
-    getItems(activeQueryType);
-  }, [contentType]); // eslint-disable-line react-hooks/exhaustive-deps
+    getItemsData(activeQueryType);
+  }, [contentType]);
+
+  const getItemsData = (queryType: string) =>
+    getItems(queryType, contentType, search)
+      .then(({ results }) => {
+        const items = queryType === QUERY_TYPE.TOP_RATED ? results.slice(0, NUMBER_OF_ITEMS) : results;
+
+        if (contentType === CONTENT_TYPE.TV_SHOW) {
+          setShows(items);
+        } else {
+          setMovies(items);
+        }
+      })
+      .catch(() => {
+        // TODO: Handle errors
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+
+  const getItemsDataAndClearTimer = (queryType: string) => {
+    getItemsData(queryType).then(() => {
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+      }
+    });
+  };
+
+  const contextValue = {
+    movies,
+    shows,
+    activeQueryType,
+    loading,
+    contentType,
+    search,
+  };
+
+  const actionsContextValue = {
+    setMovies,
+    setShows,
+    setActiveQueryType,
+    setLoading,
+    setContentType,
+    setSearch,
+  };
 
   return (
-    <MoviesShowsContext.Provider
-      value={{
-        movies,
-        setMovies,
-        shows,
-        setShows,
-        activeQueryType,
-        loading,
-        setLoading,
-        contentType,
-        setContentType,
-        search,
-        setSearch,
-      }}
-    >
-      {children}
+    <MoviesShowsContext.Provider value={contextValue}>
+      <MoviesShowsActionsContext.Provider value={actionsContextValue}>{children}</MoviesShowsActionsContext.Provider>
     </MoviesShowsContext.Provider>
   );
 }
 
-const MoviesShowsConsumer = MoviesShowsContext.Consumer;
-
-export { MoviesShowsContext, MoviesShowsProvider, MoviesShowsConsumer };
+export { MoviesShowsContext, MoviesShowsActionsContext, MoviesShowsProvider };

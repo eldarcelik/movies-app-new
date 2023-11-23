@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react';
 
 import { CONTENT_TYPE, SHOW_PLACEHOLDER, MOVIE_PLACEHOLDER } from '@/constants/constantValues';
-import { MoviesShowsContext } from '@/context/Context';
+import { MoviesShowsActionsContext, MoviesShowsContext } from '@/context/Context';
 import { NavbarState } from '@/types/types';
 
 import './Navbar.css';
 
 export default function Navbar() {
-  const { search, contentType, setSearch, setContentType } = useContext(MoviesShowsContext);
+  const { search, contentType } = useContext(MoviesShowsContext);
+  const { setSearch, setContentType } = useContext(MoviesShowsActionsContext);
   const [navbarState, setNavbarState] = useState<NavbarState>({
     moviesActive: contentType === CONTENT_TYPE.MOVIE,
     showsActive: contentType === CONTENT_TYPE.TV_SHOW,

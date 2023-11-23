@@ -6,14 +6,9 @@ import Vote from '@/components/Vote/Vote';
 import { IMAGE_PATH, DEFAULT_IMAGE } from '@/constants/constantValues';
 import { MoviesShowsContext } from '@/context/Context';
 import calculateAverageVote from '@/helpers/calculateAverageVote';
-import { ItemType } from '@/types/types';
+import { ItemCardProps } from '@/types/types';
 
 import './ItemCard.css';
-
-type ItemCardProps = {
-  item: ItemType;
-  key: number;
-};
 
 export default function ItemCard({ item }: ItemCardProps) {
   const { contentType } = useContext(MoviesShowsContext);

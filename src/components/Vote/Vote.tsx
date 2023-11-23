@@ -1,10 +1,8 @@
 import React from 'react';
 
-import './Vote.css';
+import { VoteProps } from '@/types/types';
 
-type VoteProps = {
-  voteValue: number;
-};
+import './Vote.css';
 
 export default function Vote({ voteValue }: VoteProps) {
   return (
