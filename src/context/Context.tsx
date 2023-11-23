@@ -1,31 +1,21 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useEffect, createContext, useReducer, Dispatch } from 'react';
 
 import { getItems } from '@/apis/getItems';
-import {
-  NUMBER_OF_ITEMS,
-  CONTENT_TYPE,
-  DEFAULT_SEARCH_VALUE,
-  DELAY,
-  MIN_SEARCH_CHARACTERS,
-  QUERY_TYPE,
-} from '@/constants/constantValues';
-import { ContextProps, AppContextInterface, AppContextActionsInterface, IShow, IMovie } from '@/types/types';
+import { NUMBER_OF_ITEMS, CONTENT_TYPE, DELAY, MIN_SEARCH_CHARACTERS, QUERY_TYPE } from '@/constants/constantValues';
+import initialState from '@/constants/initialState';
+import stateReducer from '@/helpers/stateReducer';
+import { ContextProps, AppContextInterface, ReducerAction } from '@/types/types';
 
-const MoviesShowsContext = createContext({} as AppContextInterface);
-const MoviesShowsActionsContext = createContext({} as AppContextActionsInterface);
+const MoviesShowsContext = createContext<AppContextInterface>(initialState);
+const MoviesShowsDispatchContext = createContext<Dispatch<ReducerAction>>(() => {});
 let timer: ReturnType<typeof setTimeout> | null = null;
 
 function MoviesShowsProvider({ children }: ContextProps) {
-  const [shows, setShows] = useState<IShow[]>([]);
-  const [movies, setMovies] = useState<IMovie[]>([]);
-  const [activeQueryType, setActiveQueryType] = useState<string>(QUERY_TYPE.TOP_RATED);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [contentType, setContentType] = useState<string>(CONTENT_TYPE.TV_SHOW);
-  const [search, setSearch] = useState<string>(DEFAULT_SEARCH_VALUE);
+  const [state, dispatch] = useReducer(stateReducer, initialState);
 
   useEffect(() => {
-    const queryType = search.length >= MIN_SEARCH_CHARACTERS ? QUERY_TYPE.SEARCH : QUERY_TYPE.TOP_RATED;
-    setActiveQueryType(queryType);
+    const queryType = state.search.length >= MIN_SEARCH_CHARACTERS ? QUERY_TYPE.SEARCH : QUERY_TYPE.TOP_RATED;
+    dispatch({ type: 'SET_ACTIVE_QUERY_TYPE', activeQueryType: queryType });
 
     // Prevent calling api in time scope of 1s
     if (timer) {
@@ -38,32 +28,32 @@ function MoviesShowsProvider({ children }: ContextProps) {
     if (queryType === QUERY_TYPE.SEARCH) {
       timer = setTimeout(() => getItemsDataAndClearTimer(queryType), DELAY);
     } // Prevent getting top 10 items multiple times if there are 2 or less characters in the search bar
-    else if (queryType !== activeQueryType) {
+    else if (queryType !== state.activeQueryType) {
       getItemsData(queryType);
     }
-  }, [search, activeQueryType]);
+  }, [state.search, state.activeQueryType]);
 
   // Triggered on switching between tabs
   useEffect(() => {
-    getItemsData(activeQueryType);
-  }, [contentType]);
+    getItemsData(state.activeQueryType);
+  }, [state.contentType]);
 
   const getItemsData = (queryType: string) =>
-    getItems(queryType, contentType, search)
+    getItems(queryType, state.contentType, state.search)
       .then(({ results }) => {
         const items = queryType === QUERY_TYPE.TOP_RATED ? results.slice(0, NUMBER_OF_ITEMS) : results;
 
-        if (contentType === CONTENT_TYPE.TV_SHOW) {
-          setShows(items);
+        if (state.contentType === CONTENT_TYPE.TV_SHOW) {
+          dispatch({ type: 'SET_SHOWS', shows: items });
         } else {
-          setMovies(items);
+          dispatch({ type: 'SET_MOVIES', movies: items });
         }
       })
       .catch(() => {
         // TODO: Handle errors
       })
       .finally(() => {
-        setLoading(false);
+        dispatch({ type: 'SET_LOADING', loading: false });
       });
 
   const getItemsDataAndClearTimer = (queryType: string) => {
@@ -75,29 +65,11 @@ function MoviesShowsProvider({ children }: ContextProps) {
     });
   };
 
-  const contextValue = {
-    movies,
-    shows,
-    activeQueryType,
-    loading,
-    contentType,
-    search,
-  };
-
-  const actionsContextValue = {
-    setMovies,
-    setShows,
-    setActiveQueryType,
-    setLoading,
-    setContentType,
-    setSearch,
-  };
-
   return (
-    <MoviesShowsContext.Provider value={contextValue}>
-      <MoviesShowsActionsContext.Provider value={actionsContextValue}>{children}</MoviesShowsActionsContext.Provider>
+    <MoviesShowsContext.Provider value={state}>
+      <MoviesShowsDispatchContext.Provider value={dispatch}>{children}</MoviesShowsDispatchContext.Provider>
     </MoviesShowsContext.Provider>
   );
 }
 
-export { MoviesShowsContext, MoviesShowsActionsContext, MoviesShowsProvider };
+export { MoviesShowsContext, MoviesShowsDispatchContext, MoviesShowsProvider };

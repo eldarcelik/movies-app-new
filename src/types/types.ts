@@ -43,13 +43,11 @@ export type AppContextInterface = {
   search: string;
 };
 
-export type AppContextActionsInterface = {
-  setMovies: (value: IMovie[]) => void;
-  setShows: (value: IShow[]) => void;
-  setLoading: (value: boolean) => void;
-  setContentType: (value: string) => void;
-  setSearch: (value: string) => void;
-};
+export type ReducerAction =
+  | { type: 'SET_LOADING'; loading: boolean }
+  | { type: 'SET_CONTENT_TYPE' | 'SET_ACTIVE_QUERY_TYPE' | 'SET_SEARCH'; [key: string]: string }
+  | { type: 'SET_SHOWS'; shows: IShow[] }
+  | { type: 'SET_MOVIES'; movies: IMovie[] };
 
 export type NavbarState = {
   moviesActive: boolean;

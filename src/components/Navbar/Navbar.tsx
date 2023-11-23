@@ -1,14 +1,14 @@
 import React, { useContext, useState } from 'react';
 
 import { CONTENT_TYPE, SHOW_PLACEHOLDER, MOVIE_PLACEHOLDER } from '@/constants/constantValues';
-import { MoviesShowsActionsContext, MoviesShowsContext } from '@/context/Context';
+import { MoviesShowsDispatchContext, MoviesShowsContext } from '@/context/Context';
 import { NavbarState } from '@/types/types';
 
 import './Navbar.css';
 
 export default function Navbar() {
   const { search, contentType } = useContext(MoviesShowsContext);
-  const { setSearch, setContentType } = useContext(MoviesShowsActionsContext);
+  const dispatch = useContext(MoviesShowsDispatchContext);
   const [navbarState, setNavbarState] = useState<NavbarState>({
     moviesActive: contentType === CONTENT_TYPE.MOVIE,
     showsActive: contentType === CONTENT_TYPE.TV_SHOW,
@@ -18,7 +18,7 @@ export default function Navbar() {
   // Handle content for tv shows or movies and change button style to active
   const handleContent = ({ currentTarget: { value } }: React.MouseEvent<HTMLButtonElement>) => {
     // Use value and set content to "tv" or "movie"
-    setContentType(value);
+    dispatch({ type: 'SET_CONTENT_TYPE', contentType: value });
 
     // Check content type on button you clicked and set it to the opposite value
     if (contentType !== value) {
@@ -31,7 +31,7 @@ export default function Navbar() {
 
   // Handle typing in search box and set it in context
   const onSearchChange = ({ currentTarget: { value } }: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(value);
+    dispatch({ type: 'SET_SEARCH', search: value });
   };
 
   const setButtonClassName = (content: boolean) => (content ? 'navbar-button-item active' : 'navbar-button-item');
