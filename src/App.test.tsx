@@ -2,7 +2,7 @@ import React from 'react';
 
 import { render, screen } from '@testing-library/react';
 
-import { getItems } from '@/apis/getItems';
+import getItems from '@/apis/getItems';
 
 import App from './App';
 

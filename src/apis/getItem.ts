@@ -1,10 +1,12 @@
-import { API_KEY } from '@/constants/constantValues';
+import { API_BASE_URL, API_KEY } from '@/constants/constantValues';
+import getData from '@/helpers/getData';
+import { ContentType, IItem } from '@/types/types';
 
-export const getItem = (contentType: string, id: string) => {
-  const ITEM_URL = `https://api.themoviedb.org/3/${contentType}/${id}?api_key=${API_KEY}&append_to_response=videos`;
+const getItem = (contentType: ContentType, id: string): Promise<IItem> => {
+  const ITEM_URL = `${API_BASE_URL}${contentType}/${id}?api_key=${API_KEY}&append_to_response=videos`;
+  const item = getData<IItem>(ITEM_URL);
 
-  return fetch(ITEM_URL).then((response) => {
-    if (response.status === 200) return response.json();
-    else throw new Error('Invalid response');
-  });
+  return item;
 };
+
+export default getItem;
