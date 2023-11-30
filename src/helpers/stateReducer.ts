@@ -1,25 +1,20 @@
-import { AppContextInterface, ReducerAction } from '@/types/types';
+import { IAppContext } from '@/context/types';
+import { ReducerAction } from '@/types/types';
 
-const stateReducer = (state: AppContextInterface, action: ReducerAction): AppContextInterface => {
+const stateReducer = (state: IAppContext, action: ReducerAction): IAppContext => {
   switch (action.type) {
-    case 'SET_LOADING': {
+    case 'SET_LOADING':
       return { ...state, loading: action.loading };
-    }
-    case 'SET_CONTENT_TYPE': {
+    case 'SET_CONTENT_TYPE':
       return { ...state, contentType: action.contentType };
-    }
-    case 'SET_ACTIVE_QUERY_TYPE': {
+    case 'SET_ACTIVE_QUERY_TYPE':
       return { ...state, activeQueryType: action.activeQueryType };
-    }
-    case 'SET_SEARCH': {
+    case 'SET_SEARCH':
       return { ...state, search: action.search };
-    }
-    case 'SET_SHOWS': {
+    case 'SET_SHOWS':
       return { ...state, shows: action.shows };
-    }
-    case 'SET_MOVIES': {
+    case 'SET_MOVIES':
       return { ...state, movies: action.movies };
-    }
     default:
       return state;
   }

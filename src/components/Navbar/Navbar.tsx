@@ -2,14 +2,14 @@ import React, { useContext, useState } from 'react';
 
 import { CONTENT_TYPE, SHOW_PLACEHOLDER, MOVIE_PLACEHOLDER } from '@/constants/constantValues';
 import { MoviesShowsDispatchContext, MoviesShowsContext } from '@/context/Context';
-import { NavbarState } from '@/types/types';
 
 import './Navbar.css';
+import { INavbar } from './types';
 
 export default function Navbar() {
   const { search, contentType } = useContext(MoviesShowsContext);
   const dispatch = useContext(MoviesShowsDispatchContext);
-  const [navbarState, setNavbarState] = useState<NavbarState>({
+  const [state, setState] = useState<INavbar>({
     moviesActive: contentType === CONTENT_TYPE.MOVIE,
     showsActive: contentType === CONTENT_TYPE.TV_SHOW,
   });
@@ -22,9 +22,9 @@ export default function Navbar() {
 
     // Check content type on button you clicked and set it to the opposite value
     if (contentType !== value) {
-      setNavbarState({
-        moviesActive: !navbarState.moviesActive,
-        showsActive: !navbarState.showsActive,
+      setState({
+        moviesActive: !state.moviesActive,
+        showsActive: !state.showsActive,
       });
     }
   };
@@ -39,18 +39,10 @@ export default function Navbar() {
   return (
     <div className='navbar-container'>
       <div className='navbar-buttons'>
-        <button
-          className={setButtonClassName(navbarState.showsActive)}
-          value={CONTENT_TYPE.TV_SHOW}
-          onClick={handleContent}
-        >
+        <button className={setButtonClassName(state.showsActive)} value={CONTENT_TYPE.TV_SHOW} onClick={handleContent}>
           {`${SHOW_PLACEHOLDER}s`}
         </button>
-        <button
-          className={setButtonClassName(navbarState.moviesActive)}
-          value={CONTENT_TYPE.MOVIE}
-          onClick={handleContent}
-        >
+        <button className={setButtonClassName(state.moviesActive)} value={CONTENT_TYPE.MOVIE} onClick={handleContent}>
           {`${MOVIE_PLACEHOLDER}s`}
         </button>
       </div>

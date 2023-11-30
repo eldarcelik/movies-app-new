@@ -1,16 +1,18 @@
 import React, { useEffect, createContext, useReducer, Dispatch } from 'react';
 
-import { getItems } from '@/apis/getItems';
+import getItems from '@/apis/getItems';
 import { NUMBER_OF_ITEMS, CONTENT_TYPE, DELAY, MIN_SEARCH_CHARACTERS, QUERY_TYPE } from '@/constants/constantValues';
 import initialState from '@/constants/initialState';
 import stateReducer from '@/helpers/stateReducer';
-import { ContextProps, AppContextInterface, ReducerAction } from '@/types/types';
+import { ContentType, QueryType, ReducerAction } from '@/types/types';
 
-const MoviesShowsContext = createContext<AppContextInterface>(initialState);
+import { IAppContext, Context } from './types';
+
+const MoviesShowsContext = createContext<IAppContext>(initialState);
 const MoviesShowsDispatchContext = createContext<Dispatch<ReducerAction>>(() => {});
 let timer: ReturnType<typeof setTimeout> | null = null;
 
-function MoviesShowsProvider({ children }: ContextProps) {
+function MoviesShowsProvider({ children }: Context) {
   const [state, dispatch] = useReducer(stateReducer, initialState);
 
   useEffect(() => {
@@ -39,7 +41,7 @@ function MoviesShowsProvider({ children }: ContextProps) {
   }, [state.contentType]);
 
   const getItemsData = (queryType: string) =>
-    getItems(queryType, state.contentType, state.search)
+    getItems(queryType as QueryType, state.contentType as ContentType, state.search)
       .then(({ results }) => {
         const items = queryType === QUERY_TYPE.TOP_RATED ? results.slice(0, NUMBER_OF_ITEMS) : results;
 
@@ -57,12 +59,16 @@ function MoviesShowsProvider({ children }: ContextProps) {
       });
 
   const getItemsDataAndClearTimer = (queryType: string) => {
-    getItemsData(queryType).then(() => {
-      if (timer) {
-        clearTimeout(timer);
-        timer = null;
-      }
-    });
+    getItemsData(queryType)
+      .then(() => {
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
+        }
+      })
+      .catch(() => {
+        // TODO: Handle errors
+      });
   };
 
   return (
