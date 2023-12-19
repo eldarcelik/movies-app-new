@@ -1,37 +1,29 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 
 import { CONTENT_TYPE, SHOW_PLACEHOLDER, MOVIE_PLACEHOLDER } from '@/constants/constantValues';
-import { MoviesShowsDispatchContext, MoviesShowsContext } from '@/context/Context';
+import useAppDispatch from '@/hooks/useAppDispatch';
+import useAppSelector from '@/hooks/useAppSelector';
+import { selectContentType, selectSearch, setContentType, setSearch } from '@/redux/rootSlice';
+import { ContentType } from '@/types/types';
 
 import './Navbar.css';
-import { INavbar } from './types';
 
 export default function Navbar() {
-  const { search, contentType } = useContext(MoviesShowsContext);
-  const dispatch = useContext(MoviesShowsDispatchContext);
-  const [state, setState] = useState<INavbar>({
-    moviesActive: contentType === CONTENT_TYPE.MOVIE,
-    showsActive: contentType === CONTENT_TYPE.TV_SHOW,
-  });
+  const dispatch = useAppDispatch();
+  const search = useAppSelector(selectSearch);
+  const contentType = useAppSelector(selectContentType);
   const searchContent = contentType === CONTENT_TYPE.TV_SHOW ? SHOW_PLACEHOLDER : MOVIE_PLACEHOLDER;
 
   // Handle content for tv shows or movies and change button style to active
   const handleContent = ({ currentTarget: { value } }: React.MouseEvent<HTMLButtonElement>) => {
-    // Use value and set content to "tv" or "movie"
-    dispatch({ type: 'SET_CONTENT_TYPE', contentType: value });
-
-    // Check content type on button you clicked and set it to the opposite value
     if (contentType !== value) {
-      setState({
-        moviesActive: !state.moviesActive,
-        showsActive: !state.showsActive,
-      });
+      dispatch(setContentType(value as ContentType));
     }
   };
 
   // Handle typing in search box and set it in context
   const onSearchChange = ({ currentTarget: { value } }: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: 'SET_SEARCH', search: value });
+    dispatch(setSearch(value));
   };
 
   const setButtonClassName = (content: boolean) => (content ? 'navbar-button-item active' : 'navbar-button-item');
@@ -39,10 +31,18 @@ export default function Navbar() {
   return (
     <div className='navbar-container'>
       <div className='navbar-buttons'>
-        <button className={setButtonClassName(state.showsActive)} value={CONTENT_TYPE.TV_SHOW} onClick={handleContent}>
+        <button
+          className={setButtonClassName(contentType === CONTENT_TYPE.TV_SHOW)}
+          value={CONTENT_TYPE.TV_SHOW}
+          onClick={handleContent}
+        >
           {`${SHOW_PLACEHOLDER}s`}
         </button>
-        <button className={setButtonClassName(state.moviesActive)} value={CONTENT_TYPE.MOVIE} onClick={handleContent}>
+        <button
+          className={setButtonClassName(contentType === CONTENT_TYPE.MOVIE)}
+          value={CONTENT_TYPE.MOVIE}
+          onClick={handleContent}
+        >
           {`${MOVIE_PLACEHOLDER}s`}
         </button>
       </div>
