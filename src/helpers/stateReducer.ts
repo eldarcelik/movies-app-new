@@ -1,7 +1,6 @@
-import { IAppContext } from '@/context/types';
-import { ReducerAction } from '@/types/types';
+import { IApp, ReducerAction } from '@/types/types';
 
-const stateReducer = (state: IAppContext, action: ReducerAction): IAppContext => {
+const stateReducer = (state: IApp, action: ReducerAction): IApp => {
   switch (action.type) {
     case 'SET_LOADING':
       return { ...state, loading: action.loading };

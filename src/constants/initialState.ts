@@ -1,8 +1,8 @@
-import { IAppContext } from '@/context/types';
+import { IApp } from '@/types/types';
 
 import { CONTENT_TYPE, DEFAULT_SEARCH_VALUE, QUERY_TYPE } from './constantValues';
 
-const initialState: IAppContext = {
+const initialState: IApp = {
   shows: [],
   movies: [],
   activeQueryType: QUERY_TYPE.TOP_RATED,
