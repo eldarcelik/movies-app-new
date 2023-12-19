@@ -53,6 +53,6 @@
       },
       "typescript": {}
     },
-    "import/core-modules": ["react", "react-redux", "@reduxjs/toolkit"]
+    "import/core-modules": ["react", "react-redux"]
   }
 }
