@@ -1,8 +1,8 @@
-import { IApp } from '@/types/types';
+import { IApp, IAppItem } from '@/types/types';
 
 import { CONTENT_TYPE, DEFAULT_SEARCH_VALUE, QUERY_TYPE } from './constantValues';
 
-const initialState: IApp = {
+export const initialState: IApp = {
   shows: [],
   movies: [],
   activeQueryType: QUERY_TYPE.TOP_RATED,
@@ -11,4 +11,20 @@ const initialState: IApp = {
   search: DEFAULT_SEARCH_VALUE,
 };
 
-export default initialState;
+export const itemInitialState: IAppItem = {
+  item: {
+    id: 0,
+    voteAverage: 0,
+    title: '',
+    name: '',
+    releaseDate: '',
+    firstAirDate: '',
+    lastAirDate: '',
+    overview: '',
+    posterPath: '',
+    videos: {
+      results: [],
+    },
+  },
+  loading: true,
+};

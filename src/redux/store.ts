@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import itemReducer from '@/redux/itemSlice';
 import rootReducer from '@/redux/rootSlice';
 
 export const store = configureStore({
   reducer: {
     root: rootReducer,
+    item: itemReducer,
   },
 });
 
