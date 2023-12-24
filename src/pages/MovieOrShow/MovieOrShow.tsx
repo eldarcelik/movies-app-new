@@ -1,37 +1,32 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { Link, useParams } from 'react-router-dom';
 
-import getItem from '@/apis/getItem';
 import Loading from '@/components/Loading/Loading';
 import Vote from '@/components/Vote/Vote';
 import { IMAGE_PATH, DEFAULT_IMAGE } from '@/constants/constantValues';
-import { MoviesShowsContext } from '@/context/Context';
 import calculateAverageVote from '@/helpers/calculateAverageVote';
-import { ContentType, IItem } from '@/types/types';
+import useAppDispatch from '@/hooks/useAppDispatch';
+import useAppSelector from '@/hooks/useAppSelector';
+import { fetchItem, selectItem, selectLoading } from '@/redux/itemSlice';
+import { selectContentType } from '@/redux/rootSlice';
+import { ContentType } from '@/types/types';
 
 import './MovieOrShow.css';
 
 export default function MovieOrShow() {
-  const { contentType } = useContext(MoviesShowsContext);
   const { id } = useParams();
-  const [video, setVideo] = useState<string | number>();
-  const [item, setItem] = useState<IItem>();
+  const dispatch = useAppDispatch();
+  const contentType = useAppSelector(selectContentType);
+  const item = useAppSelector(selectItem);
+  const loading = useAppSelector(selectLoading);
 
   useEffect(() => {
-    getItem(contentType as ContentType, id as string)
-      .then((data) => {
-        setItem(data);
-        // Set video key to use in React Player url
-        setVideo(data.videos.results[0].key);
-      })
-      .catch(() => {
-        // TODO: Handle error
-      });
+    dispatch(fetchItem({ contentType: contentType as ContentType, id: id as string }));
   }, []);
 
-  // Display loader if there is no item
-  if (!item) {
+  // Display loader while item is fetching
+  if (loading) {
     return <Loading />;
   }
 
@@ -47,7 +42,7 @@ export default function MovieOrShow() {
       <iframe
         title='video'
         className='item-media video'
-        src={`https://www.youtube.com/embed/${video}`}
+        src={`https://www.youtube.com/embed/${item.videos.results[0]?.key}`}
         allowFullScreen
       ></iframe>
     );

@@ -2,7 +2,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import getItems from '@/apis/getItems';
 import { CONTENT_TYPE, NUMBER_OF_ITEMS, QUERY_TYPE } from '@/constants/constantValues';
-import initialState from '@/constants/initialState';
+import { initialState } from '@/constants/initialState';
 import { ContentType, IItem, IMovie, IShow, QueryType } from '@/types/types';
 
 import { RootState } from './store';
