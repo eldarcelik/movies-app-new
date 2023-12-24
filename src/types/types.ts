@@ -13,6 +13,11 @@ export interface IApp {
   search: string;
 }
 
+export interface IAppItem {
+  item: IItem;
+  loading: boolean;
+}
+
 export interface IData {
   id: number;
   overview: string;

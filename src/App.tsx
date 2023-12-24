@@ -3,10 +3,10 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import './App.css';
-import { MoviesShowsProvider } from './context/Context';
 import Error from './pages/Error/Error';
 import Home from './pages/Home/Home';
 import MovieOrShow from './pages/MovieOrShow/MovieOrShow';
+import MoviesShowsProvider from './redux/MoviesShowsProvider';
 
 function App() {
   return (

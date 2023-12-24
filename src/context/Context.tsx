@@ -2,7 +2,7 @@ import React, { useEffect, createContext, useReducer, Dispatch } from 'react';
 
 import getItems from '@/apis/getItems';
 import { NUMBER_OF_ITEMS, CONTENT_TYPE, DELAY, MIN_SEARCH_CHARACTERS, QUERY_TYPE } from '@/constants/constantValues';
-import initialState from '@/constants/initialState';
+import { initialState } from '@/constants/initialState';
 import stateReducer from '@/helpers/stateReducer';
 import { ContentType, IApp, IProvider, QueryType, ReducerAction } from '@/types/types';
 

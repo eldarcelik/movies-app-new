@@ -1,17 +1,19 @@
-import React, { useContext } from 'react';
+import { useSelector } from 'react-redux';
+
+import React from 'react';
 
 import { Link } from 'react-router-dom';
 
 import Vote from '@/components/Vote/Vote';
 import { IMAGE_PATH, DEFAULT_IMAGE } from '@/constants/constantValues';
-import { MoviesShowsContext } from '@/context/Context';
 import calculateAverageVote from '@/helpers/calculateAverageVote';
+import { selectContentType } from '@/redux/rootSlice';
 
 import './ItemCard.css';
 import { IItemCard } from './types';
 
 export default function ItemCard({ item }: IItemCard) {
-  const { contentType } = useContext(MoviesShowsContext);
+  const contentType = useSelector(selectContentType);
   const { id, posterPath, title, name, voteAverage } = item;
 
   return (
