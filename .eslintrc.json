@@ -52,6 +52,7 @@
         "moduleDirectory": ["node_modules", "src"]
       },
       "typescript": {}
-    }
+    },
+    "import/core-modules": ["react", "react-redux", "@reduxjs/toolkit"]
   }
 }

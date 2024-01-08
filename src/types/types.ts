@@ -1,5 +1,23 @@
 import { CONTENT_TYPE, QUERY_TYPE } from '@/constants/constantValues';
 
+export interface IProvider {
+  children: React.ReactNode;
+}
+
+export interface IApp {
+  movies: IMovie[];
+  shows: IShow[];
+  activeQueryType: string;
+  loading: boolean;
+  contentType: string;
+  search: string;
+}
+
+export interface IAppItem {
+  item: IItem;
+  loading: boolean;
+}
+
 export interface IData {
   id: number;
   overview: string;
