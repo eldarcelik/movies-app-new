@@ -1,5 +1,6 @@
 export const API_KEY = process.env.REACT_APP_MOVIES_API_KEY;
 export const API_BASE_URL = process.env.REACT_APP_MOVIES_API_BASE_URL;
+export const DIRECTUS_BASE_URL = process.env.REACT_APP_MOVIES_API_DIRECTUS_URL;
 export const IMAGE_PATH = 'https://image.tmdb.org/t/p/w300';
 export const DEFAULT_IMAGE = 'https://moviemarker.co.uk/wp-content/uploads/NoPosterAvailable.jpg';
 export const CONTENT_TYPE = {
@@ -16,3 +17,10 @@ export const DEFAULT_SEARCH_VALUE = '';
 export const NUMBER_OF_ITEMS = 10;
 export const MIN_SEARCH_CHARACTERS = 3;
 export const DELAY = 1000;
+export const ERROR_CODES = {
+  RECORD_NOT_UNIQUE: 'RECORD_NOT_UNIQUE',
+};
+export const STATUS_CODES = {
+  OK: 200,
+  BAD_REQUEST: 400,
+};

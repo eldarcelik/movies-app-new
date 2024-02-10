@@ -7,6 +7,7 @@ import { MoviesShowsProvider } from './context/Context';
 import Error from './pages/Error/Error';
 import Home from './pages/Home/Home';
 import MovieOrShow from './pages/MovieOrShow/MovieOrShow';
+import Registration from './pages/Registration/Registration';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/:content/:id' element={<MovieOrShow />} />
+            <Route path='/registration' element={<Registration />} />
             <Route element={<Error />} />
           </Routes>
         </Router>

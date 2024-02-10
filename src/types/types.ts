@@ -40,3 +40,15 @@ type ValueOf<T> = T[keyof T];
 export type ContentType = ValueOf<typeof CONTENT_TYPE>;
 
 export type QueryType = ValueOf<typeof QUERY_TYPE>;
+
+export interface User {
+  first_name?: string;
+  last_name?: string;
+  email: string;
+  password: string;
+}
+
+export interface ServerResponse {
+  code: number;
+  message: string;
+}
