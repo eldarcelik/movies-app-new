@@ -8,9 +8,8 @@ const postData = async <T>(url: string, data: T): Promise<T> => {
       'Content-Type': 'application/json',
     },
   });
-  const responseData = await handleResponse<T>(response);
 
-  return responseData;
+  return handleResponse<T>(response);
 };
 
 export default postData;

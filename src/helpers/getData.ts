@@ -2,9 +2,8 @@ import handleResponse from './handleResponse';
 
 const getData = async <T>(url: string): Promise<T> => {
   const response = await fetch(url);
-  const data = await handleResponse<T>(response);
 
-  return data;
+  return handleResponse<T>(response);
 };
 
 export default getData;

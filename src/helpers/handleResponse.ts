@@ -5,9 +5,8 @@ import convertKeysToCamelCase from './convertKeysToCamelCase';
 const handleResponse = async <T>(response: Response): Promise<T> => {
   if (response.status === STATUS_CODES.OK) {
     const jsonResponse = await response.json();
-    const normalizedResponse = convertKeysToCamelCase<T>(jsonResponse);
 
-    return normalizedResponse;
+    return convertKeysToCamelCase<T>(jsonResponse);
   } else {
     throw await response.json();
   }
