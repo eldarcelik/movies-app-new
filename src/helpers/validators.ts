@@ -4,11 +4,7 @@ export const registrationSchema = yup
   .object({
     first_name: yup.string(),
     last_name: yup.string(),
-    email: yup
-      .string()
-      .email('Email must be valid')
-      .matches(/^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/, 'Email is not valid')
-      .required('Email is required'),
+    email: yup.string().email('Email must be valid').required('Email is required'),
     password: yup
       .string()
       .required('Password is required')
