@@ -17,19 +17,22 @@ export default function Registration() {
     reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(registrationSchema) });
-  const [serverResponse, setServerResponse] = useState<IRegistrationResponse>({ code: STATUS_CODES.OK, message: '' });
+  const [registrationResponse, setRegistrationResponse] = useState<IRegistrationResponse>({
+    code: STATUS_CODES.OK,
+    message: '',
+  });
 
   const onSubmit = handleSubmit((user: IUser) => {
     registerUser(user)
       .then((res) => {
         if (res) {
-          setServerResponse({ code: STATUS_CODES.OK, message: MESSAGES.USER_CREATED });
+          setRegistrationResponse({ code: STATUS_CODES.OK, message: MESSAGES.USER_CREATED });
           reset();
         }
       })
       .catch((err) => {
         if (err.errors[0].extensions.code === ERROR_CODES.RECORD_NOT_UNIQUE) {
-          setServerResponse({ code: STATUS_CODES.BAD_REQUEST, message: MESSAGES.USER_ALREADY_EXISTS });
+          setRegistrationResponse({ code: STATUS_CODES.BAD_REQUEST, message: MESSAGES.USER_ALREADY_EXISTS });
         }
       });
   });
@@ -107,9 +110,9 @@ export default function Registration() {
         </fieldset>
       </form>
 
-      {serverResponse.message ? (
-        <div className={serverResponse.code === STATUS_CODES.OK ? 'text-success' : 'text-danger'}>
-          {serverResponse.message}
+      {registrationResponse.message ? (
+        <div className={registrationResponse.code === STATUS_CODES.OK ? 'text-success' : 'text-danger'}>
+          {registrationResponse.message}
         </div>
       ) : null}
     </div>
