@@ -1,6 +1,3 @@
-export const API_KEY = process.env.REACT_APP_MOVIES_API_KEY;
-export const API_BASE_URL = process.env.REACT_APP_MOVIES_API_BASE_URL;
-export const DIRECTUS_BASE_URL = process.env.REACT_APP_MOVIES_API_DIRECTUS_URL;
 export const IMAGE_PATH = 'https://image.tmdb.org/t/p/w300';
 export const DEFAULT_IMAGE = 'https://moviemarker.co.uk/wp-content/uploads/NoPosterAvailable.jpg';
 export const CONTENT_TYPE = {
