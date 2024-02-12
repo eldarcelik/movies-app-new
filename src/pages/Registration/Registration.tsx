@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 
 import registerUser from '@/apis/registerUser';
-import { ERROR_CODES, STATUS_CODES } from '@/constants/constantValues';
+import { ERROR_CODES, MESSAGES, STATUS_CODES } from '@/constants/constantValues';
 import { registrationSchema } from '@/helpers/validators';
 import { IRegistrationResponse, IUser } from '@/types/types';
 
@@ -23,13 +23,13 @@ export default function Registration() {
     registerUser(user)
       .then((res) => {
         if (res) {
-          setServerResponse({ code: STATUS_CODES.OK, message: 'User is created successfully, please login.' });
+          setServerResponse({ code: STATUS_CODES.OK, message: MESSAGES.USER_CREATED });
           reset();
         }
       })
       .catch((err) => {
         if (err.errors[0].extensions.code === ERROR_CODES.RECORD_NOT_UNIQUE) {
-          setServerResponse({ code: STATUS_CODES.BAD_REQUEST, message: 'User with that email already exists.' });
+          setServerResponse({ code: STATUS_CODES.BAD_REQUEST, message: MESSAGES.USER_ALREADY_EXISTS });
         }
       });
   });

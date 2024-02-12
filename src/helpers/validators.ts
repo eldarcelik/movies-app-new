@@ -1,20 +1,22 @@
 import * as yup from 'yup';
 
+import { MESSAGES } from '@/constants/constantValues';
+
 export const registrationSchema = yup
   .object({
     first_name: yup.string(),
     last_name: yup.string(),
-    email: yup.string().email('Email must be valid').required('Email is required'),
+    email: yup.string().email(MESSAGES.EMAIL_MUST_BE_VALID).required(MESSAGES.EMAIL_REQUIRED),
     password: yup
       .string()
-      .required('Password is required')
+      .required(MESSAGES.PASSWORD_REQUIRED)
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*[\]{}()?"\\,><':;|_~`=+-])[a-zA-Z\d!@#$%^&*[\]{}()?"\\,><':;|_~`=+-]{8,99}$/,
-        'Must contain at least 8 characters, 1 uppercase, 1 lowercase, 1 special character, and 1 number',
+        MESSAGES.PASSWORD_INVALID_FORMAT,
       ),
     confirm_password: yup
       .string()
-      .required('Confirm password is required')
-      .oneOf([yup.ref('password')], 'Passwords must match'),
+      .required(MESSAGES.CONFIRM_PASSWORD_REQUIRED)
+      .oneOf([yup.ref('password')], MESSAGES.PASSWORDS_MUST_MATCH),
   })
   .required();
