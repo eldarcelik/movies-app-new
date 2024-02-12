@@ -41,14 +41,14 @@ export type ContentType = ValueOf<typeof CONTENT_TYPE>;
 
 export type QueryType = ValueOf<typeof QUERY_TYPE>;
 
-export interface User {
+export interface IUser {
   first_name?: string;
   last_name?: string;
   email: string;
   password: string;
 }
 
-export interface ServerResponse {
+export interface IRegistrationResponse {
   code: number;
   message: string;
 }

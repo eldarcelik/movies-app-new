@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import registerUser from '@/apis/registerUser';
 import { ERROR_CODES, STATUS_CODES } from '@/constants/constantValues';
 import { registrationSchema } from '@/helpers/validators';
-import { ServerResponse, User } from '@/types/types';
+import { IRegistrationResponse, IUser } from '@/types/types';
 
 import './Registration.css';
 
@@ -17,9 +17,9 @@ export default function Registration() {
     reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(registrationSchema) });
-  const [serverResponse, setServerResponse] = useState<ServerResponse>({ code: STATUS_CODES.OK, message: '' });
+  const [serverResponse, setServerResponse] = useState<IRegistrationResponse>({ code: STATUS_CODES.OK, message: '' });
 
-  const onSubmit = handleSubmit((user: User) => {
+  const onSubmit = handleSubmit((user: IUser) => {
     registerUser(user)
       .then((res) => {
         if (res) {
