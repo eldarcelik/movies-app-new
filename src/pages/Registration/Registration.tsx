@@ -13,7 +13,7 @@ import './Registration.css';
 export default function Registration() {
   const {
     register,
-    handleSubmit,
+    handleSubmit: handleSubmitHookForm,
     reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(registrationSchema) });
@@ -22,7 +22,7 @@ export default function Registration() {
     message: '',
   });
 
-  const onSubmit = handleSubmit((user: IUser) => {
+  const handleSubmit = handleSubmitHookForm((user: IUser) => {
     registerUser(user)
       .then((res) => {
         if (res) {
@@ -39,7 +39,7 @@ export default function Registration() {
 
   return (
     <div className='registration-container'>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
         <fieldset>
           <h2>Registration</h2>
 
