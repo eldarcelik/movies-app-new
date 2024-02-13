@@ -44,21 +44,21 @@ export default function Registration() {
           <h2>Registration</h2>
 
           <div className='field'>
-            <label htmlFor='first_name'>First Name</label>
+            <label htmlFor='firstName'>First Name</label>
             <input
-              id='first_name'
-              {...register('first_name')}
-              className={errors.first_name ? 'border-danger' : ''}
+              id='firstName'
+              {...register('firstName')}
+              className={errors.firstName ? 'border-danger' : ''}
               placeholder='First name'
             ></input>
           </div>
 
           <div className='field'>
-            <label htmlFor='last_name'>Last Name</label>
+            <label htmlFor='lastName'>Last Name</label>
             <input
-              id='last_name'
-              {...register('last_name')}
-              className={errors.last_name ? 'border-danger' : ''}
+              id='lastName'
+              {...register('lastName')}
+              className={errors.lastName ? 'border-danger' : ''}
               placeholder='Last name'
             ></input>
           </div>
@@ -92,18 +92,18 @@ export default function Registration() {
           </div>
 
           <div className='field'>
-            <label htmlFor='confirm_password'>
+            <label htmlFor='confirmPassword'>
               Confirm Password <sup>*</sup>
             </label>
             <input
-              id='confirm_password'
+              id='confirmPassword'
               type='password'
-              {...register('confirm_password')}
-              className={errors.confirm_password ? 'border-danger' : ''}
+              {...register('confirmPassword')}
+              className={errors.confirmPassword ? 'border-danger' : ''}
               placeholder='Confirm Password'
               autoComplete='false'
             ></input>
-            <p className='text-danger'>{errors.confirm_password?.message}</p>
+            <p className='text-danger'>{errors.confirmPassword?.message}</p>
           </div>
 
           <button>Create account</button>

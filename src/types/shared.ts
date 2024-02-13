@@ -42,8 +42,8 @@ export type ContentType = ValueOf<typeof CONTENT_TYPE>;
 export type QueryType = ValueOf<typeof QUERY_TYPE>;
 
 export interface IUser {
-  first_name?: string;
-  last_name?: string;
+  firstName?: string;
+  lastName?: string;
   email: string;
   password: string;
 }
