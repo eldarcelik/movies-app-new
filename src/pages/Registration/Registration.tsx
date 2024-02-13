@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import registerUser from '@/apis/registerUser';
 import { ERROR_CODES, MESSAGES, STATUS_CODES } from '@/constants/constantValues';
 import { registrationSchema } from '@/helpers/validators';
-import { IRegistrationResponse, IUser } from '@/types/types';
+import { IRegistrationResponse, IUser } from '@/types/shared';
 
 import './Registration.css';
 

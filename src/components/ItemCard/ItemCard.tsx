@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import Vote from '@/components/Vote/Vote';
+import Vote from '@/components/Vote';
 import { IMAGE_PATH, DEFAULT_IMAGE } from '@/constants/constantValues';
-import { MoviesShowsContext } from '@/context/Context';
+import { MoviesShowsContext } from '@/context';
 import calculateAverageVote from '@/helpers/calculateAverageVote';
 
 import './ItemCard.css';

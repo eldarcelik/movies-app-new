@@ -1,5 +1,5 @@
 import postData from '@/helpers/postData';
-import { IUser } from '@/types/types';
+import { IUser } from '@/types/shared';
 
 const registerUser = async (user: IUser): Promise<IUser> =>
   postData(`${process.env.REACT_APP_MOVIES_API_DIRECTUS_URL}/users`, user);

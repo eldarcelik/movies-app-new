@@ -3,11 +3,11 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import './App.css';
-import { MoviesShowsProvider } from './context/Context';
-import Error from './pages/Error/Error';
-import Home from './pages/Home/Home';
-import MovieOrShow from './pages/MovieOrShow/MovieOrShow';
-import Registration from './pages/Registration/Registration';
+import { MoviesShowsProvider } from './context';
+import Error from './pages/Error';
+import Home from './pages/Home';
+import MovieOrShow from './pages/MovieOrShow';
+import Registration from './pages/Registration';
 
 function App() {
   return (

@@ -3,12 +3,12 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import getItem from '@/apis/getItem';
-import Loading from '@/components/Loading/Loading';
-import Vote from '@/components/Vote/Vote';
+import Loading from '@/components/Loading';
+import Vote from '@/components/Vote';
 import { IMAGE_PATH, DEFAULT_IMAGE, VIDEO_PATH } from '@/constants/constantValues';
-import { MoviesShowsContext } from '@/context/Context';
+import { MoviesShowsContext } from '@/context';
 import calculateAverageVote from '@/helpers/calculateAverageVote';
-import { ContentType, IItem } from '@/types/types';
+import { ContentType, IItem } from '@/types/shared';
 
 import './MovieOrShow.css';
 

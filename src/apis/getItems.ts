@@ -1,6 +1,6 @@
 import { QUERY_TYPE } from '@/constants/constantValues';
 import getData from '@/helpers/getData';
-import { ContentType, IItems, QueryType } from '@/types/types';
+import { ContentType, IItems, QueryType } from '@/types/shared';
 
 const formatUrl = (queryType: QueryType, contentType: ContentType, search: string): string => {
   const QUERY_TYPE_INFO = {
