@@ -1,4 +1,4 @@
-import { IMovie, IShow } from '@/types/types';
+import { IMovie, IShow } from '@/types/shared';
 
 export type Context = {
   children: React.ReactNode;

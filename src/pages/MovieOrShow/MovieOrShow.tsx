@@ -3,12 +3,12 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import getItem from '@/apis/getItem';
-import Loading from '@/components/Loading/Loading';
-import Vote from '@/components/Vote/Vote';
-import { IMAGE_PATH, DEFAULT_IMAGE } from '@/constants/constantValues';
-import { MoviesShowsContext } from '@/context/Context';
+import Loading from '@/components/Loading';
+import Vote from '@/components/Vote';
+import { IMAGE_PATH, DEFAULT_IMAGE, VIDEO_PATH } from '@/constants/constantValues';
+import { MoviesShowsContext } from '@/context';
 import calculateAverageVote from '@/helpers/calculateAverageVote';
-import { ContentType, IItem } from '@/types/types';
+import { ContentType, IItem } from '@/types/shared';
 
 import './MovieOrShow.css';
 
@@ -44,12 +44,7 @@ export default function MovieOrShow() {
         alt={item.title || item.name}
       />
     ) : (
-      <iframe
-        title='video'
-        className='item-media video'
-        src={`https://www.youtube.com/embed/${video}`}
-        allowFullScreen
-      ></iframe>
+      <iframe title='video' className='item-media video' src={`${VIDEO_PATH}${video}`} allowFullScreen></iframe>
     );
 
   // Display item details

@@ -40,3 +40,15 @@ type ValueOf<T> = T[keyof T];
 export type ContentType = ValueOf<typeof CONTENT_TYPE>;
 
 export type QueryType = ValueOf<typeof QUERY_TYPE>;
+
+export interface IUser {
+  firstName?: string;
+  lastName?: string;
+  email: string;
+  password: string;
+}
+
+export interface IRegistrationResponse {
+  code: number;
+  message: string;
+}

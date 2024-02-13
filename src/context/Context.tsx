@@ -4,7 +4,7 @@ import getItems from '@/apis/getItems';
 import { NUMBER_OF_ITEMS, CONTENT_TYPE, DELAY, MIN_SEARCH_CHARACTERS, QUERY_TYPE } from '@/constants/constantValues';
 import initialState from '@/constants/initialState';
 import stateReducer from '@/helpers/stateReducer';
-import { ContentType, QueryType, ReducerAction } from '@/types/types';
+import { ContentType, QueryType, ReducerAction } from '@/types/shared';
 
 import { IAppContext, Context } from './types';
 

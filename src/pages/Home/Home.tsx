@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 
-import ItemCard from '@/components/Item/ItemCard';
-import Loading from '@/components/Loading/Loading';
-import Navbar from '@/components/Navbar/Navbar';
+import ItemCard from '@/components/ItemCard';
+import Loading from '@/components/Loading';
+import Navbar from '@/components/Navbar';
 import { CONTENT_TYPE } from '@/constants/constantValues';
-import { MoviesShowsContext } from '@/context/Context';
-import { IShow, IMovie, IItem } from '@/types/types';
+import { MoviesShowsContext } from '@/context';
+import { IShow, IMovie, IItem } from '@/types/shared';
 
 import './Home.css';
 

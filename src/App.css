@@ -4,3 +4,15 @@
   margin: 0;
   padding: 0;
 }
+
+.text-danger {
+  color: var(--danger-color);
+}
+
+.text-success {
+  color: var(--success-color);
+}
+
+.border-danger {
+  border: 1px solid var(--danger-color);
+}
