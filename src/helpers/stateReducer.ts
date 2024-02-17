@@ -1,5 +1,4 @@
-import { IAppContext } from '@/context/types';
-import { ReducerAction } from '@/types/shared';
+import { IAppContext, ReducerAction } from '@/context/types';
 
 const stateReducer = (state: IAppContext, action: ReducerAction): IAppContext => {
   switch (action.type) {

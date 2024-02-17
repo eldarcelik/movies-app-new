@@ -2,11 +2,11 @@ import React, { useEffect, createContext, useReducer, Dispatch } from 'react';
 
 import getItems from '@/apis/getItems';
 import { NUMBER_OF_ITEMS, CONTENT_TYPE, DELAY, MIN_SEARCH_CHARACTERS, QUERY_TYPE } from '@/constants/constantValues';
-import initialState from '@/constants/initialState';
-import stateReducer from '@/helpers/stateReducer';
-import { ContentType, QueryType, ReducerAction } from '@/types/shared';
+import { stateReducer } from '@/helpers';
+import { ContentType, QueryType } from '@/types';
 
-import { IAppContext, Context } from './types';
+import initialState from './constants';
+import { IAppContext, Context, ReducerAction } from './types';
 
 const MoviesShowsContext = createContext<IAppContext>(initialState);
 const MoviesShowsDispatchContext = createContext<Dispatch<ReducerAction>>(() => {});

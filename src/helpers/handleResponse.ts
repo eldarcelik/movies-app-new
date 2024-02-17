@@ -1,6 +1,6 @@
 import { STATUS_CODES } from '@/constants/constantValues';
 
-import convertKeysToCamelCase from './convertKeysToCamelCase';
+import { convertKeysToCamelCase } from './';
 
 const handleResponse = async <T>(response: Response): Promise<T> => {
   if (response.status === STATUS_CODES.OK) {
