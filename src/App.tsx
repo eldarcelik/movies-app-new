@@ -4,10 +4,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import './App.css';
 import { MoviesShowsProvider } from './context';
+import Login from './pages/Account/Login';
+import Registration from './pages/Account/Registration';
 import Error from './pages/Error';
 import Home from './pages/Home';
 import MovieOrShow from './pages/MovieOrShow';
-import Registration from './pages/Registration';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/:content/:id' element={<MovieOrShow />} />
             <Route path='/registration' element={<Registration />} />
+            <Route path='/login' element={<Login />} />
             <Route element={<Error />} />
           </Routes>
         </Router>

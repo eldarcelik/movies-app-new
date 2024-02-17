@@ -1,4 +1,4 @@
-.registration-container {
+.account-container {
   align-items: center;
   display: flex;
   flex: 1;
@@ -55,7 +55,7 @@
 }
 
 @media screen and (max-width: 430px) {
-  .registration-container {
+  .account-container {
     fieldset {
       width: 280px;
     }

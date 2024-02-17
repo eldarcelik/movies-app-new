@@ -7,8 +7,9 @@ import registerUser from '@/apis/registerUser';
 import { ERROR_CODES, MESSAGES, STATUS_CODES } from '@/constants/constantValues';
 import { registrationSchema } from '@/helpers';
 
-import './Registration.css';
-import { IRegistrationResponse, IUser } from './types';
+import { IRegistrationResponse } from './types';
+import '../Account.css';
+import { IUser } from '../types';
 
 export default function Registration() {
   const {
@@ -38,7 +39,7 @@ export default function Registration() {
   });
 
   return (
-    <div className='registration-container'>
+    <div className='account-container'>
       <form onSubmit={handleSubmit}>
         <fieldset>
           <h2>Registration</h2>
