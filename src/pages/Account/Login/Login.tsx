@@ -37,8 +37,6 @@ export default function Login() {
           <Form>
             <fieldset>
               <h2>Login</h2>
-              {isSubmitting}
-
               <div className='field'>
                 <label htmlFor='email'>
                   Email <sup>*</sup>
