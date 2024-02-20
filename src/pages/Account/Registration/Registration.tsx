@@ -2,40 +2,48 @@ import React, { useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import registerUser from '@/apis/registerUser';
-import { ERROR_CODES, MESSAGES, STATUS_CODES } from '@/constants/constantValues';
+import { DELAY, ERROR_CODES, MESSAGES, STATUS_CODES } from '@/constants/constantValues';
 import { registrationSchema } from '@/helpers';
 
-import { IRegistrationResponse } from './types';
+import { IRegistrationInfo } from './types';
 import '../Account.css';
 import { IUser } from '../types';
 
 export default function Registration() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit: handleSubmitHookForm,
     reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(registrationSchema) });
-  const [registrationResponse, setRegistrationResponse] = useState<IRegistrationResponse>({
+  const [registrationInfo, setRegistrationInfo] = useState<IRegistrationInfo>({
     code: STATUS_CODES.OK,
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const handleSubmit = handleSubmitHookForm((user: IUser) => {
+    setIsSubmitting(true);
     registerUser(user)
       .then((res) => {
         if (res) {
-          setRegistrationResponse({ code: STATUS_CODES.OK, message: MESSAGES.USER_CREATED });
+          setRegistrationInfo({ code: STATUS_CODES.OK, message: MESSAGES.USER_CREATED });
           reset();
+          setTimeout(() => {
+            navigate('/login');
+          }, DELAY);
         }
       })
-      .catch((err) => {
-        if (err.errors[0].extensions.code === ERROR_CODES.RECORD_NOT_UNIQUE) {
-          setRegistrationResponse({ code: STATUS_CODES.BAD_REQUEST, message: MESSAGES.USER_ALREADY_EXISTS });
+      .catch(({ errors }) => {
+        if (errors[0].extensions.code === ERROR_CODES.RECORD_NOT_UNIQUE) {
+          setRegistrationInfo({ code: STATUS_CODES.BAD_REQUEST, message: MESSAGES.USER_ALREADY_EXISTS });
         }
-      });
+      })
+      .finally(() => setIsSubmitting(false));
   });
 
   return (
@@ -107,13 +115,15 @@ export default function Registration() {
             <p className='text-danger'>{errors.confirmPassword?.message}</p>
           </div>
 
-          <button>Create account</button>
+          <button type='submit' disabled={isSubmitting}>
+            Create account
+          </button>
         </fieldset>
       </form>
 
-      {registrationResponse.message ? (
-        <div className={registrationResponse.code === STATUS_CODES.OK ? 'text-success' : 'text-danger'}>
-          {registrationResponse.message}
+      {registrationInfo.message ? (
+        <div className={registrationInfo.code === STATUS_CODES.OK ? 'text-success' : 'text-danger'}>
+          {registrationInfo.message}
         </div>
       ) : null}
     </div>

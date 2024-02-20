@@ -2,11 +2,13 @@ import React, { useContext, useState } from 'react';
 
 import { CONTENT_TYPE, SHOW_PLACEHOLDER, MOVIE_PLACEHOLDER } from '@/constants/constantValues';
 import { MoviesShowsDispatchContext, MoviesShowsContext } from '@/context';
+import useAuth from '@/hooks/useAuth';
 
 import './Navbar.css';
 import { INavbar } from './types';
 
 export default function Navbar() {
+  const { handleLogout } = useAuth();
   const { search, contentType } = useContext(MoviesShowsContext);
   const dispatch = useContext(MoviesShowsDispatchContext);
   const [state, setState] = useState<INavbar>({
@@ -47,6 +49,7 @@ export default function Navbar() {
         </button>
       </div>
       <input id='search-box' placeholder={`Search for ${searchContent}`} value={search} onChange={onSearchChange} />
+      <i className='fa fa-sign-out' onClick={handleLogout}></i>
     </div>
   );
 }

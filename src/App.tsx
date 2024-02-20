@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import './App.css';
+import PrivateRoute from './components/PrivateRoute';
 import { MoviesShowsProvider } from './context';
 import Login from './pages/Account/Login';
 import Registration from './pages/Account/Registration';
@@ -16,11 +17,25 @@ function App() {
       <MoviesShowsProvider>
         <Router>
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/:content/:id' element={<MovieOrShow />} />
+            <Route
+              path='/'
+              element={
+                <PrivateRoute>
+                  <Home />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path='/:content/:id'
+              element={
+                <PrivateRoute>
+                  <MovieOrShow />
+                </PrivateRoute>
+              }
+            />
             <Route path='/registration' element={<Registration />} />
             <Route path='/login' element={<Login />} />
-            <Route element={<Error />} />
+            <Route path='*' element={<Error />} />
           </Routes>
         </Router>
       </MoviesShowsProvider>

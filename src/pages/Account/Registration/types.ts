@@ -1,4 +1,4 @@
-export interface IRegistrationResponse {
+export interface IRegistrationInfo {
   code: number;
   message: string;
 }

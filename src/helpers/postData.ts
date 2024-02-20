@@ -1,6 +1,6 @@
 import { convertKeysToSnakeCase, handleResponse } from './';
 
-const postData = async <T>(url: string, data: T): Promise<T> => {
+const postData = async <T, R>(url: string, data: T): Promise<R> => {
   const response = await fetch(url, {
     method: 'POST',
     body: JSON.stringify(convertKeysToSnakeCase(data)),
@@ -9,7 +9,7 @@ const postData = async <T>(url: string, data: T): Promise<T> => {
     },
   });
 
-  return handleResponse<T>(response);
+  return handleResponse<R>(response);
 };
 
 export default postData;

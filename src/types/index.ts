@@ -3,10 +3,6 @@ import { IMovie, IShow } from '@/pages/Home/types';
 
 export interface IItem extends IMovie, IShow {}
 
-export interface IItems {
-  results: IItem[];
-}
-
 type ValueOf<T> = T[keyof T];
 
 export type ContentType = ValueOf<typeof CONTENT_TYPE>;
