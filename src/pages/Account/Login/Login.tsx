@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Link } from 'react-router-dom';
 
 import login from '@/apis/login';
 import { ERROR_CODES, MESSAGES, STATUS_CODES } from '@/constants/constantValues';
@@ -70,6 +71,9 @@ export default function Login() {
           </Form>
         )}
       </Formik>
+      <div>
+        Do not have account? <Link to='/registration'>Register here.</Link>
+      </div>
       {loginInfo.message ? <div className='text-danger'>{loginInfo.message}</div> : null}
     </div>
   );

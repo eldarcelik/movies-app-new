@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import registerUser from '@/apis/registerUser';
 import { DELAY, ERROR_CODES, MESSAGES, STATUS_CODES } from '@/constants/constantValues';
@@ -121,6 +121,9 @@ export default function Registration() {
         </fieldset>
       </form>
 
+      <div>
+        Already have account? <Link to='/login'>Login here.</Link>
+      </div>
       {registrationInfo.message ? (
         <div className={registrationInfo.code === STATUS_CODES.OK ? 'text-success' : 'text-danger'}>
           {registrationInfo.message}
