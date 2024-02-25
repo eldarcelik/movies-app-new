@@ -18,16 +18,15 @@ export default function Registration() {
     register,
     handleSubmit: handleSubmitHookForm,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({ resolver: yupResolver(registrationSchema) });
   const [registrationInfo, setRegistrationInfo] = useState<IRegistrationInfo>({
     code: STATUS_CODES.OK,
     message: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleSubmit = handleSubmitHookForm((user: IUser) => {
-    setIsSubmitting(true);
     registerUser(user)
       .then((res) => {
         if (res) {
@@ -42,8 +41,7 @@ export default function Registration() {
         if (errors[0].extensions.code === ERROR_CODES.RECORD_NOT_UNIQUE) {
           setRegistrationInfo({ code: STATUS_CODES.BAD_REQUEST, message: MESSAGES.USER_ALREADY_EXISTS });
         }
-      })
-      .finally(() => setIsSubmitting(false));
+      });
   });
 
   return (
@@ -86,17 +84,22 @@ export default function Registration() {
             <p className='text-danger'>{errors.email?.message}</p>
           </div>
 
-          <div className='field'>
+          <div className='field password-wrapper'>
             <label htmlFor='password'>
               Password <sup>*</sup>
             </label>
             <input
               id='password'
-              type='password'
+              type={showPassword ? 'text' : 'password'}
               {...register('password')}
               className={errors.password ? 'border-danger' : ''}
               placeholder='Password'
             ></input>
+            <i
+              className={showPassword ? 'fa fa-solid fa-eye' : 'fa fa-solid fa-eye-slash'}
+              onClick={() => setShowPassword(!showPassword)}
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
+            ></i>
             <p className='text-danger'>{errors.password?.message}</p>
           </div>
 

@@ -39,6 +39,17 @@
         height: 32px;
         padding: 0 0.5rem;
       }
+
+      i {
+        cursor: pointer;
+        position: absolute;
+        right: 0.5rem;
+        top: 2.1rem;
+      }
+    }
+
+    .password-wrapper {
+      position: relative;
     }
 
     button {

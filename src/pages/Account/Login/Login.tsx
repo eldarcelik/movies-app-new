@@ -13,6 +13,7 @@ import { ILoginInfo } from './types';
 export default function Login() {
   const { handleLoginResponse } = useLogin();
   const [loginInfo, setLoginInfo] = useState<ILoginInfo>({});
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   return (
     <div className='account-container'>
@@ -51,17 +52,22 @@ export default function Login() {
                 />
                 <ErrorMessage name='email' component='p' className='text-danger' />
               </div>
-              <div className='field'>
+              <div className='field password-wrapper'>
                 <label htmlFor='password'>
                   Password <sup>*</sup>
                 </label>
                 <Field
-                  type='password'
+                  type={showPassword ? 'text' : 'password'}
                   name='password'
                   id='password'
                   placeholder='Password'
                   className={errors.password ? 'border-danger' : ''}
                 />
+                <i
+                  className={showPassword ? 'fa fa-solid fa-eye' : 'fa fa-solid fa-eye-slash'}
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                ></i>
                 <ErrorMessage name='password' component='p' className='text-danger' />
               </div>
               <button type='submit' disabled={isSubmitting}>
