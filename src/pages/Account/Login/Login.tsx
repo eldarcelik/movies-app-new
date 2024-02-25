@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, FastField, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 
 import login from '@/apis/login';
@@ -48,7 +48,7 @@ export default function Login() {
                 <label htmlFor='email'>
                   Email <sup>*</sup>
                 </label>
-                <Field
+                <FastField
                   type='email'
                   name='email'
                   id='email'
