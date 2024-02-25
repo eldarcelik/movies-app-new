@@ -9,11 +9,27 @@ import { loginSchema } from '@/helpers';
 import useLogin from '@/hooks';
 
 import { ILoginInfo } from './types';
+import { IUser } from '../types';
 
 export default function Login() {
   const { handleLoginResponse } = useLogin();
   const [loginInfo, setLoginInfo] = useState<ILoginInfo>({});
   const [showPassword, setShowPassword] = useState<boolean>(false);
+
+  const handleLogin = (user: IUser, setSubmitting: { (isSubmitting: boolean): void }) => {
+    login(user)
+      .then(({ data }) => {
+        handleLoginResponse(data);
+      })
+      .catch(({ errors }) => {
+        if (errors[0].extensions.code === ERROR_CODES.INVALID_CREDENTIALS) {
+          setLoginInfo({ code: STATUS_CODES.UNAUTHORIZED, message: MESSAGES.INVALID_CREDENTIALS });
+        }
+      })
+      .finally(() => {
+        setSubmitting(false);
+      });
+  };
 
   return (
     <div className='account-container'>
@@ -21,18 +37,7 @@ export default function Login() {
         initialValues={{ email: '', password: '' }}
         validationSchema={loginSchema}
         onSubmit={(values, { setSubmitting }) => {
-          login(values)
-            .then(({ data }) => {
-              handleLoginResponse(data);
-            })
-            .catch(({ errors }) => {
-              if (errors[0].extensions.code === ERROR_CODES.INVALID_CREDENTIALS) {
-                setLoginInfo({ code: STATUS_CODES.UNAUTHORIZED, message: MESSAGES.INVALID_CREDENTIALS });
-              }
-            })
-            .finally(() => {
-              setSubmitting(false);
-            });
+          handleLogin(values, setSubmitting);
         }}
       >
         {({ isSubmitting, errors }) => (
