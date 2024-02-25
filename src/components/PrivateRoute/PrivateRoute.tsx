@@ -1,10 +1,9 @@
 import React from 'react';
 
-import { Navigate } from 'react-router-dom';
-
 import useAuth from '@/hooks';
 
 import { IPrivateRoute } from './types';
+import Unauthorized from '../Unauthorized';
 
 const PrivateRoute = ({ children }: IPrivateRoute) => {
   const {
@@ -12,7 +11,7 @@ const PrivateRoute = ({ children }: IPrivateRoute) => {
   } = useAuth();
 
   if (!accessToken || !expires || Date.now() > expires) {
-    return <Navigate to='/login' replace />;
+    return <Unauthorized></Unauthorized>;
   }
 
   return <>{children}</>;

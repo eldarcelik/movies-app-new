@@ -7,7 +7,7 @@ import PrivateRoute from './components/PrivateRoute';
 import { MoviesShowsProvider } from './context';
 import Login from './pages/Account/Login';
 import Registration from './pages/Account/Registration';
-import Error from './pages/Error';
+import Error from './pages/Error/Error';
 import Home from './pages/Home';
 import MovieOrShow from './pages/MovieOrShow';
 
