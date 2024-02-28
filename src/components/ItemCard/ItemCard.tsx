@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Vote from '@/components/Vote';
 import { IMAGE_PATH, DEFAULT_IMAGE } from '@/constants/constantValues';
 import { MoviesShowsContext } from '@/context';
-import calculateAverageVote from '@/helpers/calculateAverageVote';
+import { calculateAverageVote } from '@/helpers';
 
 import './ItemCard.css';
 import { IItemCard } from './types';

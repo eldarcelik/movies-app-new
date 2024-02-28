@@ -5,10 +5,10 @@ import { useForm } from 'react-hook-form';
 
 import registerUser from '@/apis/registerUser';
 import { ERROR_CODES, MESSAGES, STATUS_CODES } from '@/constants/constantValues';
-import { registrationSchema } from '@/helpers/validators';
-import { IRegistrationResponse, IUser } from '@/types/shared';
+import { registrationSchema } from '@/helpers';
 
 import './Registration.css';
+import { IRegistrationResponse, IUser } from './types';
 
 export default function Registration() {
   const {

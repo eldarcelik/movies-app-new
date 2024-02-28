@@ -1,4 +1,4 @@
-import calculateAverageVote from './calculateAverageVote';
+import { calculateAverageVote } from './';
 
 describe('calculateAverageVote', () => {
   test('calculate average vote helper', () => {

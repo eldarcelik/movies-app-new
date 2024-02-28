@@ -1,5 +1,4 @@
-import convertKeysToSnakeCase from './convertKeysToSnakeCase';
-import handleResponse from './handleResponse';
+import { convertKeysToSnakeCase, handleResponse } from './';
 
 const postData = async <T>(url: string, data: T): Promise<T> => {
   const response = await fetch(url, {

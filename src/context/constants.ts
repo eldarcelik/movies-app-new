@@ -1,6 +1,5 @@
+import { CONTENT_TYPE, DEFAULT_SEARCH_VALUE, QUERY_TYPE } from '@/constants/constantValues';
 import { IAppContext } from '@/context/types';
-
-import { CONTENT_TYPE, DEFAULT_SEARCH_VALUE, QUERY_TYPE } from './constantValues';
 
 const initialState: IAppContext = {
   shows: [],
