@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import logout from '@/apis/logout';
 import { ILogin, ILoginState } from '@/pages/Account/Login/types';
 
 const useAuth = () => {
@@ -26,12 +27,14 @@ const useAuth = () => {
     navigate('/');
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await logout();
+    setLoginState({ accessToken: null, expires: null, refreshToken: null });
+
     sessionStorage.removeItem('accessToken');
     sessionStorage.removeItem('expires');
     sessionStorage.removeItem('refreshToken');
 
-    setLoginState({ accessToken: null, expires: null, refreshToken: null });
     navigate('/login');
   };
 
