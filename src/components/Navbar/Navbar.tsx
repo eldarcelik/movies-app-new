@@ -48,8 +48,16 @@ export default function Navbar() {
           {`${MOVIE_PLACEHOLDER}s`}
         </button>
       </div>
-      <input id='search-box' placeholder={`Search for ${searchContent}`} value={search} onChange={onSearchChange} />
-      <i className='fa fa-sign-out' onClick={handleLogout}></i>
+      <input
+        id='search-box'
+        placeholder={`Search for ${searchContent}`}
+        value={search}
+        onChange={onSearchChange}
+        aria-label={`Search for ${searchContent}`}
+      />
+      <button type='button' id='logoutBtn' onClick={handleLogout} aria-label='Logout'>
+        <i className='fa fa-sign-out' aria-hidden='true'></i>
+      </button>
     </div>
   );
 }

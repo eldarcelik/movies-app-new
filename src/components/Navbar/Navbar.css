@@ -70,7 +70,8 @@
   width: 30%;
 }
 
-.fa-sign-out {
+#logout-btn {
+  background-color: var(--primary-color);
   color: var(--secondary-color);
   cursor: pointer;
 }

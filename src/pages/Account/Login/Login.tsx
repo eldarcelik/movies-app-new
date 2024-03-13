@@ -31,15 +31,13 @@ export default function Login() {
       });
   };
 
+  const handleSubmit = (values: IUser, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }): void => {
+    handleLogin(values, setSubmitting);
+  };
+
   return (
     <div className='account-container'>
-      <Formik
-        initialValues={{ email: '', password: '' }}
-        validationSchema={loginSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          handleLogin(values, setSubmitting);
-        }}
-      >
+      <Formik initialValues={{ email: '', password: '' }} validationSchema={loginSchema} onSubmit={handleSubmit}>
         {({ isSubmitting, errors }) => (
           <Form>
             <fieldset>
