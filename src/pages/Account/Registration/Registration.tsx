@@ -28,8 +28,8 @@ export default function Registration() {
 
   const handleSubmit = handleSubmitHookForm((user: IUser) => {
     registerUser(user)
-      .then((res) => {
-        if (res) {
+      .then((response) => {
+        if (response.status == STATUS_CODES.OK) {
           setRegistrationInfo({ code: STATUS_CODES.OK, message: MESSAGES.USER_CREATED });
           reset();
           setTimeout(() => {
@@ -37,11 +37,19 @@ export default function Registration() {
           }, DELAY);
         }
       })
-      .catch(({ errors }) => {
-        if (errors[0].extensions.code === ERROR_CODES.RECORD_NOT_UNIQUE) {
-          setRegistrationInfo({ code: STATUS_CODES.BAD_REQUEST, message: MESSAGES.USER_ALREADY_EXISTS });
-        }
-      });
+      .catch(
+        ({
+          error: {
+            response: {
+              data: { errors },
+            },
+          },
+        }) => {
+          if (errors[0].extensions.code === ERROR_CODES.RECORD_NOT_UNIQUE) {
+            setRegistrationInfo({ code: STATUS_CODES.BAD_REQUEST, message: MESSAGES.USER_ALREADY_EXISTS });
+          }
+        },
+      );
   });
 
   return (

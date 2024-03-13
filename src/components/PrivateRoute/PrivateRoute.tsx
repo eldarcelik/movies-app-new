@@ -1,16 +1,13 @@
 import React from 'react';
 
-import useAuth from '@/hooks';
+import Unauthorized from '@/pages/Unauthorized';
 
 import { IPrivateRoute } from './types';
-import Unauthorized from '../Unauthorized';
 
 const PrivateRoute = ({ children }: IPrivateRoute) => {
-  const {
-    loginState: { accessToken, expires },
-  } = useAuth();
+  const accessToken = sessionStorage.getItem('accessToken');
 
-  if (!accessToken || !expires || Date.now() > expires) {
+  if (!accessToken) {
     return <Unauthorized></Unauthorized>;
   }
 

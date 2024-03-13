@@ -12,7 +12,9 @@ export default function Unauthorized() {
       navigate('/login', { replace: true });
     }, DELAY);
 
-    return () => clearTimeout(timeoutId);
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   return (

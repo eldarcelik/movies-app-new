@@ -36,4 +36,5 @@ export const MESSAGES = {
   USER_CREATED: 'User is created successfully, please login.',
   USER_ALREADY_EXISTS: 'User with that email already exists.',
   INVALID_CREDENTIALS: 'Invalid email or password.',
+  REFRESH_TOKEN_FAILED: 'Refresh token failed',
 };
