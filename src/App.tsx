@@ -12,7 +12,7 @@ import Home from './pages/Home';
 import MovieOrShow from './pages/MovieOrShow';
 import Unauthorized from './pages/Unauthorized';
 
-function App() {
+function App(): JSX.Element {
   return (
     <>
       <MoviesShowsProvider>

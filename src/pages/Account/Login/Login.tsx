@@ -8,16 +8,16 @@ import { ERROR_CODES, MESSAGES, STATUS_CODES } from '@/constants/constantValues'
 import { loginSchema } from '@/helpers';
 import useLogin from '@/hooks';
 
-import { ILoginInfo } from './types';
-import { IUser } from '../types';
+import type { ILoginInfo } from './types';
+import type { IUser } from '../types';
 
-export default function Login() {
+export default function Login(): JSX.Element {
   const navigate = useNavigate();
   const { handleLoginResponse } = useLogin();
   const [loginInfo, setLoginInfo] = useState<ILoginInfo>({});
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const handleLogin = (user: IUser, setSubmitting: { (isSubmitting: boolean): void }) => {
+  const handleLogin = (user: IUser, setSubmitting: { (isSubmitting: boolean): void }): void => {
     login(user)
       .then(({ data: { data: loginData } }) => {
         handleLoginResponse(loginData);
@@ -41,15 +41,13 @@ export default function Login() {
       });
   };
 
+  const handleSubmit = (values: IUser, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }): void => {
+    handleLogin(values, setSubmitting);
+  };
+
   return (
     <div className='account-container'>
-      <Formik
-        initialValues={{ email: '', password: '' }}
-        validationSchema={loginSchema}
-        onSubmit={(values, { setSubmitting }) => {
-          handleLogin(values, setSubmitting);
-        }}
-      >
+      <Formik initialValues={{ email: '', password: '' }} validationSchema={loginSchema} onSubmit={handleSubmit}>
         {({ isSubmitting, errors }) => (
           <Form>
             <fieldset>

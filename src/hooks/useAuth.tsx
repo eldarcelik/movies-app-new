@@ -3,12 +3,17 @@
 import { useNavigate } from 'react-router-dom';
 
 import logout from '@/apis/logout';
-import { ILogin } from '@/pages/Account/Login/types';
+import type { ILogin } from '@/pages/Account/Login/types';
 
-const useAuth = () => {
+interface IUseAuth {
+  handleLoginResponse: (response: ILogin) => void;
+  handleLogout: () => Promise<void>;
+}
+
+const useAuth = (): IUseAuth => {
   const navigate = useNavigate();
 
-  const handleLoginResponse = (response: ILogin) => {
+  const handleLoginResponse = (response: ILogin): void => {
     const { accessToken, expires, refreshToken } = response;
     const newLoginState = { accessToken, expires: Date.now() + expires, refreshToken };
 
@@ -17,7 +22,7 @@ const useAuth = () => {
     sessionStorage.setItem('refreshToken', newLoginState.refreshToken);
   };
 
-  const handleLogout = async () => {
+  const handleLogout = async (): Promise<void> => {
     await logout();
 
     sessionStorage.removeItem('accessToken');

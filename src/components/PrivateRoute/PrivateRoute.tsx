@@ -2,9 +2,9 @@ import React from 'react';
 
 import Unauthorized from '@/pages/Unauthorized';
 
-import { IPrivateRoute } from './types';
+import type { IPrivateRoute } from './types';
 
-const PrivateRoute = ({ children }: IPrivateRoute) => {
+const PrivateRoute = ({ children }: IPrivateRoute): JSX.Element => {
   const accessToken = sessionStorage.getItem('accessToken');
 
   if (!accessToken) {

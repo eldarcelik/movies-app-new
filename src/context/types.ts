@@ -1,4 +1,4 @@
-import { IMovie, IShow } from '@/pages/Home/types';
+import type { IMovie, IShow } from '@/pages/Home/types';
 
 export type Context = {
   children: React.ReactNode;

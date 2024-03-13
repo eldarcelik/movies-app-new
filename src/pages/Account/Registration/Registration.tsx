@@ -8,11 +8,11 @@ import registerUser from '@/apis/registerUser';
 import { DELAY, ERROR_CODES, MESSAGES, STATUS_CODES } from '@/constants/constantValues';
 import { registrationSchema } from '@/helpers';
 
-import { IRegistrationInfo } from './types';
+import type { IRegistrationInfo } from './types';
 import '../Account.css';
-import { IUser } from '../types';
+import type { IUser } from '../types';
 
-export default function Registration() {
+export default function Registration(): JSX.Element {
   const navigate = useNavigate();
   const {
     register,

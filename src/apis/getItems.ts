@@ -2,8 +2,8 @@ import type { AxiosResponse } from 'axios';
 
 import { QUERY_TYPE } from '@/constants/constantValues';
 import { getData } from '@/helpers';
-import { IItemsResponse } from '@/pages/Home/types';
-import { ContentType, QueryType } from '@/types';
+import type { IItemsResponse } from '@/pages/Home/types';
+import type { ContentType, QueryType } from '@/types';
 
 const formatUrl = (queryType: QueryType, contentType: ContentType, search: string): string => {
   const QUERY_TYPE_INFO = {

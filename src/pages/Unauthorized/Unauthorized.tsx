@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { DELAY } from '@/constants/constantValues';
 
-export default function Unauthorized() {
+export default function Unauthorized(): JSX.Element {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function Unauthorized() {
   return (
     <div className='error'>
       <h1>Unauthorized Access</h1>
-      <h6>Redirecting to login page...</h6>
+      <p>Redirecting to login page...</p>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import './Error.css';
 
-export default function Error() {
+export default function Error(): JSX.Element {
   return (
     <div className='error'>
       <h1>Error 404</h1>
