@@ -56,7 +56,7 @@ export default function Navbar(): JSX.Element {
         onChange={onSearchChange}
         aria-label={`Search for ${searchContent}`}
       />
-      <button type='button' id='logoutBtn' onClick={handleLogout} aria-label='Logout'>
+      <button type='button' id='logout-btn' onClick={handleLogout} aria-label='Logout'>
         <i className='fa fa-sign-out' aria-hidden='true'></i>
       </button>
     </div>
