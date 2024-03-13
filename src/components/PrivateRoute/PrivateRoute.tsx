@@ -2,7 +2,7 @@ import React from 'react';
 
 import useAuth from '@/hooks';
 
-import { IPrivateRoute } from './types';
+import type { IPrivateRoute } from './types';
 import Unauthorized from '../Unauthorized';
 
 const PrivateRoute = ({ children }: IPrivateRoute): JSX.Element => {

@@ -8,8 +8,8 @@ import { ERROR_CODES, MESSAGES, STATUS_CODES } from '@/constants/constantValues'
 import { loginSchema } from '@/helpers';
 import useLogin from '@/hooks';
 
-import { ILoginInfo } from './types';
-import { IUser } from '../types';
+import type { ILoginInfo } from './types';
+import type { IUser } from '../types';
 
 export default function Login(): JSX.Element {
   const { handleLoginResponse } = useLogin();

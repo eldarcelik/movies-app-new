@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import logout from '@/apis/logout';
-import { ILogin, ILoginState } from '@/pages/Account/Login/types';
+import type { ILogin, ILoginState } from '@/pages/Account/Login/types';
 
 interface IUseAuth {
   loginState: ILoginState;

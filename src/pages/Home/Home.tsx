@@ -5,10 +5,10 @@ import Loading from '@/components/Loading';
 import Navbar from '@/components/Navbar';
 import { CONTENT_TYPE } from '@/constants/constantValues';
 import { MoviesShowsContext } from '@/context';
-import { IItem } from '@/types';
+import type { IItem } from '@/types';
 
 import './Home.css';
-import { IMovie, IShow } from './types';
+import type { IMovie, IShow } from './types';
 
 export default function Home(): JSX.Element {
   const { movies, shows, contentType, loading } = useContext(MoviesShowsContext);

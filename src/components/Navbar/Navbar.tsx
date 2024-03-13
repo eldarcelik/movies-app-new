@@ -5,7 +5,7 @@ import { MoviesShowsDispatchContext, MoviesShowsContext } from '@/context';
 import useAuth from '@/hooks/useAuth';
 
 import './Navbar.css';
-import { INavbar } from './types';
+import type { INavbar } from './types';
 
 export default function Navbar(): JSX.Element {
   const { handleLogout } = useAuth();

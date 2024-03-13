@@ -1,12 +1,13 @@
-import React, { useEffect, createContext, useReducer, Dispatch } from 'react';
+import React, { useEffect, createContext, useReducer } from 'react';
+import type { Dispatch } from 'react';
 
 import getItems from '@/apis/getItems';
 import { NUMBER_OF_ITEMS, CONTENT_TYPE, DELAY, MIN_SEARCH_CHARACTERS, QUERY_TYPE } from '@/constants/constantValues';
 import { stateReducer } from '@/helpers';
-import { ContentType, QueryType } from '@/types';
+import type { ContentType, QueryType } from '@/types';
 
 import initialState from './constants';
-import { IAppContext, Context, ReducerAction } from './types';
+import type { IAppContext, Context, ReducerAction } from './types';
 
 const MoviesShowsContext = createContext<IAppContext>(initialState);
 const MoviesShowsDispatchContext = createContext<Dispatch<ReducerAction>>(() => {});
