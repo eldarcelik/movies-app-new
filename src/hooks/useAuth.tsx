@@ -5,7 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import logout from '@/apis/logout';
 import { ILogin, ILoginState } from '@/pages/Account/Login/types';
 
-const useAuth = () => {
+interface IUseAuth {
+  loginState: ILoginState;
+  handleLoginResponse: (response: ILogin) => void;
+  handleLogout: () => Promise<void>;
+}
+
+const useAuth = (): IUseAuth => {
   const navigate = useNavigate();
   const [loginState, setLoginState] = useState<ILoginState>(() => {
     const accessToken = sessionStorage.getItem('accessToken') || null;
@@ -15,7 +21,7 @@ const useAuth = () => {
     return { accessToken, expires, refreshToken };
   });
 
-  const handleLoginResponse = (response: ILogin) => {
+  const handleLoginResponse = (response: ILogin): void => {
     const { accessToken, expires, refreshToken } = response;
     const newLoginState = { accessToken, expires: Date.now() + expires, refreshToken };
 
@@ -27,7 +33,7 @@ const useAuth = () => {
     navigate('/');
   };
 
-  const handleLogout = async () => {
+  const handleLogout = async (): Promise<void> => {
     await logout();
     setLoginState({ accessToken: null, expires: null, refreshToken: null });
 

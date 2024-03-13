@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { DELAY } from '@/constants/constantValues';
 
-export default function Unauthorized() {
+export default function Unauthorized(): JSX.Element {
   const navigate = useNavigate();
 
   useEffect(() => {

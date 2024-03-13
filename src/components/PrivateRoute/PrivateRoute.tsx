@@ -5,7 +5,7 @@ import useAuth from '@/hooks';
 import { IPrivateRoute } from './types';
 import Unauthorized from '../Unauthorized';
 
-const PrivateRoute = ({ children }: IPrivateRoute) => {
+const PrivateRoute = ({ children }: IPrivateRoute): JSX.Element => {
   const {
     loginState: { accessToken, expires },
   } = useAuth();

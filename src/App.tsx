@@ -11,7 +11,7 @@ import Error from './pages/Error/Error';
 import Home from './pages/Home';
 import MovieOrShow from './pages/MovieOrShow';
 
-function App() {
+function App(): JSX.Element {
   return (
     <>
       <MoviesShowsProvider>

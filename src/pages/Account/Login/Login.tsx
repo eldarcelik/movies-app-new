@@ -11,12 +11,12 @@ import useLogin from '@/hooks';
 import { ILoginInfo } from './types';
 import { IUser } from '../types';
 
-export default function Login() {
+export default function Login(): JSX.Element {
   const { handleLoginResponse } = useLogin();
   const [loginInfo, setLoginInfo] = useState<ILoginInfo>({});
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const handleLogin = (user: IUser, setSubmitting: { (isSubmitting: boolean): void }) => {
+  const handleLogin = (user: IUser, setSubmitting: { (isSubmitting: boolean): void }): void => {
     login(user)
       .then(({ data }) => {
         handleLoginResponse(data);

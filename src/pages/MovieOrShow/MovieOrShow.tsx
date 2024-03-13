@@ -12,7 +12,7 @@ import { ContentType, IItem } from '@/types';
 
 import './MovieOrShow.css';
 
-export default function MovieOrShow() {
+export default function MovieOrShow(): JSX.Element {
   const { contentType } = useContext(MoviesShowsContext);
   const { id } = useParams();
   const [video, setVideo] = useState<string | number>();

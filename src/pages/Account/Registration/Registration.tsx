@@ -12,7 +12,7 @@ import { IRegistrationInfo } from './types';
 import '../Account.css';
 import { IUser } from '../types';
 
-export default function Registration() {
+export default function Registration(): JSX.Element {
   const navigate = useNavigate();
   const {
     register,

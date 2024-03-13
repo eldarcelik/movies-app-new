@@ -12,7 +12,7 @@ const MoviesShowsContext = createContext<IAppContext>(initialState);
 const MoviesShowsDispatchContext = createContext<Dispatch<ReducerAction>>(() => {});
 let timer: ReturnType<typeof setTimeout> | null = null;
 
-function MoviesShowsProvider({ children }: Context) {
+function MoviesShowsProvider({ children }: Context): JSX.Element {
   const [state, dispatch] = useReducer(stateReducer, initialState);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ function MoviesShowsProvider({ children }: Context) {
     getItemsData(state.activeQueryType);
   }, [state.contentType]);
 
-  const getItemsData = (queryType: string) =>
+  const getItemsData = (queryType: string): Promise<void> =>
     getItems(queryType as QueryType, state.contentType as ContentType, state.search)
       .then(({ results }) => {
         const items = queryType === QUERY_TYPE.TOP_RATED ? results.slice(0, NUMBER_OF_ITEMS) : results;
@@ -58,7 +58,7 @@ function MoviesShowsProvider({ children }: Context) {
         dispatch({ type: 'SET_LOADING', loading: false });
       });
 
-  const getItemsDataAndClearTimer = (queryType: string) => {
+  const getItemsDataAndClearTimer = (queryType: string): Promise<void> =>
     getItemsData(queryType)
       .then(() => {
         if (timer) {
@@ -69,7 +69,6 @@ function MoviesShowsProvider({ children }: Context) {
       .catch(() => {
         // TODO: Handle errors
       });
-  };
 
   return (
     <MoviesShowsContext.Provider value={state}>
