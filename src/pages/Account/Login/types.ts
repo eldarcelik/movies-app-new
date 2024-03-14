@@ -13,8 +13,3 @@ export interface ILoginState {
 export interface ILoginResponse {
   data: ILogin;
 }
-
-export interface ILoginInfo {
-  code?: number;
-  message?: string;
-}

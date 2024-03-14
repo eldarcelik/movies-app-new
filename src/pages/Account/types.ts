@@ -8,3 +8,8 @@ export interface IUser {
 export interface ILogout {
   refreshToken: string;
 }
+
+export interface IAccountInfo {
+  code?: number;
+  message?: string;
+}

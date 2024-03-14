@@ -25,3 +25,5 @@ export const loginSchema = yup.object({
   email: yup.string().email(MESSAGES.EMAIL_MUST_BE_VALID).required(MESSAGES.EMAIL_REQUIRED),
   password: yup.string().required(MESSAGES.PASSWORD_REQUIRED),
 });
+
+export const emailValidationPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;

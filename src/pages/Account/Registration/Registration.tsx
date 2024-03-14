@@ -8,9 +8,8 @@ import registerUser from '@/apis/registerUser';
 import { DELAY, ERROR_CODES, MESSAGES, STATUS_CODES } from '@/constants/constantValues';
 import { registrationSchema } from '@/helpers';
 
-import type { IRegistrationInfo } from './types';
 import '../Account.css';
-import type { IUser } from '../types';
+import type { IAccountInfo, IUser } from '../types';
 
 export default function Registration(): JSX.Element {
   const navigate = useNavigate();
@@ -20,7 +19,7 @@ export default function Registration(): JSX.Element {
     reset,
     formState: { errors, isSubmitting },
   } = useForm({ resolver: yupResolver(registrationSchema) });
-  const [registrationInfo, setRegistrationInfo] = useState<IRegistrationInfo>({
+  const [registrationInfo, setRegistrationInfo] = useState<IAccountInfo>({
     code: STATUS_CODES.OK,
     message: '',
   });

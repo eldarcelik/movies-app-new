@@ -8,13 +8,12 @@ import { ERROR_CODES, MESSAGES, STATUS_CODES } from '@/constants/constantValues'
 import { loginSchema } from '@/helpers';
 import useLogin from '@/hooks';
 
-import type { ILoginInfo } from './types';
-import type { IUser } from '../types';
+import type { IAccountInfo, IUser } from '../types';
 
 export default function Login(): JSX.Element {
   const navigate = useNavigate();
   const { handleLoginResponse } = useLogin();
-  const [loginInfo, setLoginInfo] = useState<ILoginInfo>({});
+  const [loginInfo, setLoginInfo] = useState<IAccountInfo>({});
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleLogin = (user: IUser, setSubmitting: { (isSubmitting: boolean): void }): void => {
@@ -47,6 +46,9 @@ export default function Login(): JSX.Element {
 
   return (
     <div className='account-container'>
+      <div>
+        Do not have account? <Link to='/registration'>Register here.</Link>
+      </div>
       <Formik initialValues={{ email: '', password: '' }} validationSchema={loginSchema} onSubmit={handleSubmit}>
         {({ isSubmitting, errors }) => (
           <Form>
@@ -91,7 +93,7 @@ export default function Login(): JSX.Element {
         )}
       </Formik>
       <div>
-        Do not have account? <Link to='/registration'>Register here.</Link>
+        Forgot password? <Link to='/request-reset-password'>Reset password here.</Link>
       </div>
       {loginInfo.message ? <div className='text-danger'>{loginInfo.message}</div> : null}
     </div>

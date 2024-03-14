@@ -37,4 +37,6 @@ export const MESSAGES = {
   USER_ALREADY_EXISTS: 'User with that email already exists.',
   INVALID_CREDENTIALS: 'Invalid email or password.',
   REFRESH_TOKEN_FAILED: 'Refresh token failed',
+  REQUEST_RESET_EMAIL_MESSAGE: 'Email for reseting password has been sent to your mail address.',
+  GENERAL_ERROR_MESSAGE: 'Something went wrong. Please try again.',
 };
