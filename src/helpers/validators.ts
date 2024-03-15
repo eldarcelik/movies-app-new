@@ -2,6 +2,10 @@ import * as yup from 'yup';
 
 import { MESSAGES } from '@/constants/constantValues';
 
+export const emailValidationPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+export const passwordValidationPattern =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*[\]{}()?"\\,><':;|_~`=+-])[a-zA-Z\d!@#$%^&*[\]{}()?"\\,><':;|_~`=+-]{8,99}$/;
+
 export const registrationSchema = yup
   .object({
     firstName: yup.string(),
@@ -10,10 +14,7 @@ export const registrationSchema = yup
     password: yup
       .string()
       .required(MESSAGES.PASSWORD_REQUIRED)
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*[\]{}()?"\\,><':;|_~`=+-])[a-zA-Z\d!@#$%^&*[\]{}()?"\\,><':;|_~`=+-]{8,99}$/,
-        MESSAGES.PASSWORD_INVALID_FORMAT,
-      ),
+      .matches(passwordValidationPattern, MESSAGES.PASSWORD_INVALID_FORMAT),
     confirmPassword: yup
       .string()
       .required(MESSAGES.CONFIRM_PASSWORD_REQUIRED)
@@ -25,5 +26,3 @@ export const loginSchema = yup.object({
   email: yup.string().email(MESSAGES.EMAIL_MUST_BE_VALID).required(MESSAGES.EMAIL_REQUIRED),
   password: yup.string().required(MESSAGES.PASSWORD_REQUIRED),
 });
-
-export const emailValidationPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;

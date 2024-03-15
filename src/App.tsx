@@ -8,6 +8,7 @@ import { MoviesShowsProvider } from './context';
 import Login from './pages/Account/Login';
 import Registration from './pages/Account/Registration';
 import RequestResetPassword from './pages/Account/RequestResetPassword';
+import ResetPassword from './pages/Account/ResetPassword/ResetPassword';
 import Error from './pages/Error/Error';
 import Home from './pages/Home';
 import MovieOrShow from './pages/MovieOrShow';
@@ -39,6 +40,7 @@ function App(): JSX.Element {
             <Route path='/login' element={<Login />} />
             <Route path='/unauthorized' element={<Unauthorized />} />
             <Route path='/request-reset-password' element={<RequestResetPassword />} />
+            <Route path='/reset-password' element={<ResetPassword />} />
             <Route path='*' element={<Error />} />
           </Routes>
         </Router>

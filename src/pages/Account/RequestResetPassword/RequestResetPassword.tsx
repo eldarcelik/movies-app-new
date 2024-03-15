@@ -46,7 +46,7 @@ export default function RequestResetPassword(): JSX.Element {
       .then(() =>
         setResetPasswordInfo({
           code: STATUS_CODES.OK,
-          message: MESSAGES.REQUEST_RESET_EMAIL_MESSAGE,
+          message: MESSAGES.REQUEST_RESET_PASSWORD_MESSAGE,
         }),
       )
       .catch(() =>
@@ -61,9 +61,11 @@ export default function RequestResetPassword(): JSX.Element {
     <div className='account-container'>
       <form onSubmit={handleSubmit}>
         <fieldset>
-          <h2>Reset Password</h2>
+          <h2>Request Reset Password</h2>
           <div className='field'>
-            <label htmlFor='email'>Email</label>
+            <label htmlFor='email'>
+              Email <sup>*</sup>
+            </label>
             <input
               type='email'
               id='email'
@@ -74,7 +76,7 @@ export default function RequestResetPassword(): JSX.Element {
             ></input>
             {emailValidationMessage ? <p className='text-danger'>{emailValidationMessage}</p> : null}
           </div>
-          <button type='submit'>Reset password</button>
+          <button type='submit'>Request reset password</button>
         </fieldset>
       </form>
       <div>
