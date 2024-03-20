@@ -10,6 +10,6 @@ export interface ILogout {
 }
 
 export interface IAccountInfo {
-  code?: number;
-  message?: string;
+  code: number;
+  message: string;
 }

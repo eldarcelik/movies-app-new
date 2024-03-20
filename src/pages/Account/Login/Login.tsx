@@ -13,7 +13,7 @@ import type { IAccountInfo, IUser } from '../types';
 export default function Login(): JSX.Element {
   const navigate = useNavigate();
   const { handleLoginResponse } = useLogin();
-  const [loginInfo, setLoginInfo] = useState<IAccountInfo>({});
+  const [loginInfo, setLoginInfo] = useState<IAccountInfo>({ code: STATUS_CODES.OK, message: '' });
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleLogin = (user: IUser, setSubmitting: { (isSubmitting: boolean): void }): void => {
