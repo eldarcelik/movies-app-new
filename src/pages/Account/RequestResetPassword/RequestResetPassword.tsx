@@ -15,6 +15,7 @@ export default function RequestResetPassword(): JSX.Element {
     code: STATUS_CODES.OK,
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const handleEmail = (event: ChangeEvent<HTMLInputElement>): void => {
     setEmailValidationMessage('');
@@ -40,8 +41,9 @@ export default function RequestResetPassword(): JSX.Element {
   const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
-    if (!validateEmail(email)) return;
+    if (isSubmitting || !validateEmail(email)) return;
 
+    setIsSubmitting(true);
     requestResetPassword(email)
       .then(() =>
         setResetPasswordInfo({
@@ -54,7 +56,8 @@ export default function RequestResetPassword(): JSX.Element {
           code: STATUS_CODES.BAD_REQUEST,
           message: MESSAGES.GENERAL_ERROR_MESSAGE,
         }),
-      );
+      )
+      .finally(() => setIsSubmitting(false));
   };
 
   return (
@@ -76,7 +79,9 @@ export default function RequestResetPassword(): JSX.Element {
             ></input>
             {emailValidationMessage ? <p className='text-danger'>{emailValidationMessage}</p> : null}
           </div>
-          <button type='submit'>Request reset password</button>
+          <button type='submit' disabled={isSubmitting}>
+            Request reset password
+          </button>
         </fieldset>
       </form>
       <div>

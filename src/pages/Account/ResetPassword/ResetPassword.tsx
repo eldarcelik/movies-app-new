@@ -16,6 +16,7 @@ export default function ResetPassword(): JSX.Element {
     code: STATUS_CODES.OK,
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [token, setToken] = useState<string>('');
 
@@ -52,8 +53,9 @@ export default function ResetPassword(): JSX.Element {
   const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
 
-    if (!validatePassword(password)) return;
+    if (isSubmitting || !validatePassword(password)) return;
 
+    setIsSubmitting(true);
     resetPassword(password, token)
       .then(() =>
         setResetPasswordInfo({
@@ -66,7 +68,8 @@ export default function ResetPassword(): JSX.Element {
           code: STATUS_CODES.BAD_REQUEST,
           message: MESSAGES.GENERAL_ERROR_MESSAGE,
         }),
-      );
+      )
+      .finally(() => setIsSubmitting(false));
   };
 
   return (
@@ -93,7 +96,9 @@ export default function ResetPassword(): JSX.Element {
             ></i>
             {passwordValidationMessage ? <p className='text-danger'>{passwordValidationMessage}</p> : null}
           </div>
-          <button type='submit'>Reset password</button>
+          <button type='submit' disabled={isSubmitting}>
+            Reset password
+          </button>
         </fieldset>
       </form>
       <div>
