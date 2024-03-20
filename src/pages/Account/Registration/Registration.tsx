@@ -2,43 +2,50 @@ import React, { useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
 
 import registerUser from '@/apis/registerUser';
-import { ERROR_CODES, MESSAGES, STATUS_CODES } from '@/constants/constantValues';
+import { DELAY, ERROR_CODES, MESSAGES, STATUS_CODES } from '@/constants/constantValues';
 import { registrationSchema } from '@/helpers';
 
-import './Registration.css';
-import { IRegistrationResponse, IUser } from './types';
+import type { IRegistrationInfo } from './types';
+import '../Account.css';
+import type { IUser } from '../types';
 
-export default function Registration() {
+export default function Registration(): JSX.Element {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit: handleSubmitHookForm,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({ resolver: yupResolver(registrationSchema) });
-  const [registrationResponse, setRegistrationResponse] = useState<IRegistrationResponse>({
+  const [registrationInfo, setRegistrationInfo] = useState<IRegistrationInfo>({
     code: STATUS_CODES.OK,
     message: '',
   });
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleSubmit = handleSubmitHookForm((user: IUser) => {
     registerUser(user)
       .then((res) => {
         if (res) {
-          setRegistrationResponse({ code: STATUS_CODES.OK, message: MESSAGES.USER_CREATED });
+          setRegistrationInfo({ code: STATUS_CODES.OK, message: MESSAGES.USER_CREATED });
           reset();
+          setTimeout(() => {
+            navigate('/login');
+          }, DELAY);
         }
       })
-      .catch((err) => {
-        if (err.errors[0].extensions.code === ERROR_CODES.RECORD_NOT_UNIQUE) {
-          setRegistrationResponse({ code: STATUS_CODES.BAD_REQUEST, message: MESSAGES.USER_ALREADY_EXISTS });
+      .catch(({ errors }) => {
+        if (errors[0].extensions.code === ERROR_CODES.RECORD_NOT_UNIQUE) {
+          setRegistrationInfo({ code: STATUS_CODES.BAD_REQUEST, message: MESSAGES.USER_ALREADY_EXISTS });
         }
       });
   });
 
   return (
-    <div className='registration-container'>
+    <div className='account-container'>
       <form onSubmit={handleSubmit}>
         <fieldset>
           <h2>Registration</h2>
@@ -77,17 +84,22 @@ export default function Registration() {
             <p className='text-danger'>{errors.email?.message}</p>
           </div>
 
-          <div className='field'>
+          <div className='field password-wrapper'>
             <label htmlFor='password'>
               Password <sup>*</sup>
             </label>
             <input
               id='password'
-              type='password'
+              type={showPassword ? 'text' : 'password'}
               {...register('password')}
               className={errors.password ? 'border-danger' : ''}
               placeholder='Password'
             ></input>
+            <i
+              className={showPassword ? 'fa fa-solid fa-eye' : 'fa fa-solid fa-eye-slash'}
+              onClick={() => setShowPassword(!showPassword)}
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
+            ></i>
             <p className='text-danger'>{errors.password?.message}</p>
           </div>
 
@@ -106,13 +118,18 @@ export default function Registration() {
             <p className='text-danger'>{errors.confirmPassword?.message}</p>
           </div>
 
-          <button>Create account</button>
+          <button type='submit' disabled={isSubmitting}>
+            Create account
+          </button>
         </fieldset>
       </form>
 
-      {registrationResponse.message ? (
-        <div className={registrationResponse.code === STATUS_CODES.OK ? 'text-success' : 'text-danger'}>
-          {registrationResponse.message}
+      <div>
+        Already have account? <Link to='/login'>Login here.</Link>
+      </div>
+      {registrationInfo.message ? (
+        <div className={registrationInfo.code === STATUS_CODES.OK ? 'text-success' : 'text-danger'}>
+          {registrationInfo.message}
         </div>
       ) : null}
     </div>

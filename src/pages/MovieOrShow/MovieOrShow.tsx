@@ -8,11 +8,11 @@ import Vote from '@/components/Vote';
 import { IMAGE_PATH, DEFAULT_IMAGE, VIDEO_PATH } from '@/constants/constantValues';
 import { MoviesShowsContext } from '@/context';
 import { calculateAverageVote } from '@/helpers';
-import { ContentType, IItem } from '@/types';
+import type { ContentType, IItem } from '@/types';
 
 import './MovieOrShow.css';
 
-export default function MovieOrShow() {
+export default function MovieOrShow(): JSX.Element {
   const { contentType } = useContext(MoviesShowsContext);
   const { id } = useParams();
   const [video, setVideo] = useState<string | number>();

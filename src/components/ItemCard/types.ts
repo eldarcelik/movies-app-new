@@ -1,4 +1,4 @@
-import { IItem } from '@/types';
+import type { IItem } from '@/types';
 
 export interface IItemCard {
   item: IItem;

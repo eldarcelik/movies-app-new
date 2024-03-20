@@ -13,6 +13,6 @@
   color: var(--success-color);
 }
 
-.border-danger {
+.account-container fieldset .field input.border-danger {
   border: 1px solid var(--danger-color);
 }

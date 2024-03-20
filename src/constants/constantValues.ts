@@ -17,10 +17,13 @@ export const MIN_SEARCH_CHARACTERS = 3;
 export const DELAY = 1000;
 export const ERROR_CODES = {
   RECORD_NOT_UNIQUE: 'RECORD_NOT_UNIQUE',
+  INVALID_CREDENTIALS: 'INVALID_CREDENTIALS',
 };
 export const STATUS_CODES = {
   OK: 200,
+  NO_CONTENT: 204,
   BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
 };
 export const MESSAGES = {
   EMAIL_MUST_BE_VALID: 'Email must be valid',
@@ -32,4 +35,5 @@ export const MESSAGES = {
     'Must contain at least 8 characters, 1 uppercase, 1 lowercase, 1 special character, and 1 number',
   USER_CREATED: 'User is created successfully, please login.',
   USER_ALREADY_EXISTS: 'User with that email already exists.',
+  INVALID_CREDENTIALS: 'Invalid email or password.',
 };

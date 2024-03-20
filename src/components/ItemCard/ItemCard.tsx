@@ -8,9 +8,9 @@ import { MoviesShowsContext } from '@/context';
 import { calculateAverageVote } from '@/helpers';
 
 import './ItemCard.css';
-import { IItemCard } from './types';
+import type { IItemCard } from './types';
 
-export default function ItemCard({ item }: IItemCard) {
+export default function ItemCard({ item }: IItemCard): JSX.Element {
   const { contentType } = useContext(MoviesShowsContext);
   const { id, posterPath, title, name, voteAverage } = item;
 

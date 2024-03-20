@@ -3,26 +3,41 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import './App.css';
+import PrivateRoute from './components/PrivateRoute';
 import { MoviesShowsProvider } from './context';
-import Error from './pages/Error';
+import Login from './pages/Account/Login';
+import Registration from './pages/Account/Registration';
+import Error from './pages/Error/Error';
 import Home from './pages/Home';
 import MovieOrShow from './pages/MovieOrShow';
-import Registration from './pages/Registration';
 
-function App() {
+function App(): JSX.Element {
   return (
-    <>
-      <MoviesShowsProvider>
-        <Router>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/:content/:id' element={<MovieOrShow />} />
-            <Route path='/registration' element={<Registration />} />
-            <Route element={<Error />} />
-          </Routes>
-        </Router>
-      </MoviesShowsProvider>
-    </>
+    <MoviesShowsProvider>
+      <Router>
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path='/:content/:id'
+            element={
+              <PrivateRoute>
+                <MovieOrShow />
+              </PrivateRoute>
+            }
+          />
+          <Route path='/registration' element={<Registration />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='*' element={<Error />} />
+        </Routes>
+      </Router>
+    </MoviesShowsProvider>
   );
 }
 

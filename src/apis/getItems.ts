@@ -1,6 +1,7 @@
 import { QUERY_TYPE } from '@/constants/constantValues';
 import { getData } from '@/helpers';
-import { ContentType, IItems, QueryType } from '@/types';
+import type { IItemsResponse } from '@/pages/Home/types';
+import type { ContentType, QueryType } from '@/types';
 
 const formatUrl = (queryType: QueryType, contentType: ContentType, search: string): string => {
   const QUERY_TYPE_INFO = {
@@ -11,7 +12,7 @@ const formatUrl = (queryType: QueryType, contentType: ContentType, search: strin
   return QUERY_TYPE_INFO[queryType];
 };
 
-const getItems = async (queryType: QueryType, contentType: ContentType, search: string): Promise<IItems> =>
-  getData<IItems>(formatUrl(queryType, contentType, search));
+const getItems = async (queryType: QueryType, contentType: ContentType, search: string): Promise<IItemsResponse> =>
+  getData<IItemsResponse>(formatUrl(queryType, contentType, search));
 
 export default getItems;

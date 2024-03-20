@@ -1,3 +1,5 @@
+import type { IItem } from '@/types';
+
 export interface IData {
   id: number;
   overview: string;
@@ -19,4 +21,8 @@ export interface IMovie extends IData {
   title: string;
   videos: IVideos;
   releaseDate: string;
+}
+
+export interface IItemsResponse {
+  results: IItem[];
 }

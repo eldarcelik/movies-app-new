@@ -20,3 +20,8 @@ export const registrationSchema = yup
       .oneOf([yup.ref('password')], MESSAGES.PASSWORDS_MUST_MATCH),
   })
   .required();
+
+export const loginSchema = yup.object({
+  email: yup.string().email(MESSAGES.EMAIL_MUST_BE_VALID).required(MESSAGES.EMAIL_REQUIRED),
+  password: yup.string().required(MESSAGES.PASSWORD_REQUIRED),
+});

@@ -1,11 +1,7 @@
-import { CONTENT_TYPE, QUERY_TYPE } from '@/constants/constantValues';
-import { IMovie, IShow } from '@/pages/Home/types';
+import type { CONTENT_TYPE, QUERY_TYPE } from '@/constants/constantValues';
+import type { IMovie, IShow } from '@/pages/Home/types';
 
 export interface IItem extends IMovie, IShow {}
-
-export interface IItems {
-  results: IItem[];
-}
 
 type ValueOf<T> = T[keyof T];
 

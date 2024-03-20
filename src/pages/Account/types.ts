@@ -4,8 +4,3 @@ export interface IUser {
   email: string;
   password: string;
 }
-
-export interface IRegistrationResponse {
-  code: number;
-  message: string;
-}

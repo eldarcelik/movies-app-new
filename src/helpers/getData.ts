@@ -1,9 +1,9 @@
 import { handleResponse } from './';
 
-const getData = async <T>(url: string): Promise<T> => {
+const getData = async <R>(url: string): Promise<R> => {
   const response = await fetch(url);
 
-  return handleResponse<T>(response);
+  return handleResponse<R>(response);
 };
 
 export default getData;
