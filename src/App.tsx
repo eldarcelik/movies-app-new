@@ -8,7 +8,7 @@ import { MoviesShowsProvider } from './context';
 import Login from './pages/Account/Login';
 import Registration from './pages/Account/Registration';
 import RequestResetPassword from './pages/Account/RequestResetPassword';
-import ResetPassword from './pages/Account/ResetPassword/ResetPassword';
+import ResetPassword from './pages/Account/ResetPassword';
 import Error from './pages/Error/Error';
 import Home from './pages/Home';
 import MovieOrShow from './pages/MovieOrShow';
