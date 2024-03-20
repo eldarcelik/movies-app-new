@@ -20,7 +20,7 @@ export default function MovieOrShow(): JSX.Element {
 
   useEffect(() => {
     getItem(contentType as ContentType, id as string)
-      .then((data) => {
+      .then(({ data }) => {
         setItem(data);
         // Set video key to use in React Player url
         setVideo(data.videos.results[0].key);

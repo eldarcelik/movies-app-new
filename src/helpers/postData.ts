@@ -1,17 +1,8 @@
-import { convertKeysToSnakeCase, handleResponse } from './';
+import type { AxiosResponse } from 'axios';
 
-const postData = async <T, R>(url: string, data: T): Promise<R> => {
-  const accessToken = sessionStorage.getItem('accessToken');
-  const response = await fetch(url, {
-    method: 'POST',
-    body: JSON.stringify(convertKeysToSnakeCase(data)),
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${accessToken ?? ''}`,
-    },
-  });
+import axiosInstance from '@/axiosInstance';
 
-  return handleResponse<R>(response);
-};
+const postData = async <T, D>(url: string, data: D): Promise<AxiosResponse<T, D>> =>
+  axiosInstance.post<T, AxiosResponse<T, D>, D>(url, data);
 
 export default postData;

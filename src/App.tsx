@@ -2,14 +2,16 @@ import React from 'react';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+import PrivateRoute from '@/components/PrivateRoute';
+import { MoviesShowsProvider } from '@/context';
+import Login from '@/pages/Account/Login';
+import Registration from '@/pages/Account/Registration';
+import Error from '@/pages/Error/Error';
+import Home from '@/pages/Home';
+import MovieOrShow from '@/pages/MovieOrShow';
+import Unauthorized from '@/pages/Unauthorized';
+
 import './App.css';
-import PrivateRoute from './components/PrivateRoute';
-import { MoviesShowsProvider } from './context';
-import Login from './pages/Account/Login';
-import Registration from './pages/Account/Registration';
-import Error from './pages/Error/Error';
-import Home from './pages/Home';
-import MovieOrShow from './pages/MovieOrShow';
 
 function App(): JSX.Element {
   return (
@@ -34,6 +36,7 @@ function App(): JSX.Element {
           />
           <Route path='/registration' element={<Registration />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/unauthorized' element={<Unauthorized />} />
           <Route path='*' element={<Error />} />
         </Routes>
       </Router>

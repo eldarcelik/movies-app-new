@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Formik, Form, Field, FastField, ErrorMessage } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import login from '@/apis/login';
 import { ERROR_CODES, MESSAGES, STATUS_CODES } from '@/constants/constantValues';
@@ -12,20 +12,30 @@ import type { ILoginInfo } from './types';
 import type { IUser } from '../types';
 
 export default function Login(): JSX.Element {
+  const navigate = useNavigate();
   const { handleLoginResponse } = useLogin();
   const [loginInfo, setLoginInfo] = useState<ILoginInfo>({});
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleLogin = (user: IUser, setSubmitting: { (isSubmitting: boolean): void }): void => {
     login(user)
-      .then(({ data }) => {
-        handleLoginResponse(data);
+      .then(({ data: { data: loginData } }) => {
+        handleLoginResponse(loginData);
+        navigate('/');
       })
-      .catch(({ errors }) => {
-        if (errors[0].extensions.code === ERROR_CODES.INVALID_CREDENTIALS) {
-          setLoginInfo({ code: STATUS_CODES.UNAUTHORIZED, message: MESSAGES.INVALID_CREDENTIALS });
-        }
-      })
+      .catch(
+        ({
+          error: {
+            response: {
+              data: { errors },
+            },
+          },
+        }) => {
+          if (errors[0].extensions.code === ERROR_CODES.INVALID_CREDENTIALS) {
+            setLoginInfo({ code: STATUS_CODES.UNAUTHORIZED, message: MESSAGES.INVALID_CREDENTIALS });
+          }
+        },
+      )
       .finally(() => {
         setSubmitting(false);
       });

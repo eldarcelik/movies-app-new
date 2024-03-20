@@ -1,3 +1,5 @@
+import type { AxiosResponse } from 'axios';
+
 import { QUERY_TYPE } from '@/constants/constantValues';
 import { getData } from '@/helpers';
 import type { IItemsResponse } from '@/pages/Home/types';
@@ -12,7 +14,10 @@ const formatUrl = (queryType: QueryType, contentType: ContentType, search: strin
   return QUERY_TYPE_INFO[queryType];
 };
 
-const getItems = async (queryType: QueryType, contentType: ContentType, search: string): Promise<IItemsResponse> =>
-  getData<IItemsResponse>(formatUrl(queryType, contentType, search));
+const getItems = async (
+  queryType: QueryType,
+  contentType: ContentType,
+  search: string,
+): Promise<AxiosResponse<IItemsResponse>> => getData<IItemsResponse>(formatUrl(queryType, contentType, search));
 
 export default getItems;

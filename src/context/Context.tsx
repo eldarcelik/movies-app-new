@@ -43,7 +43,7 @@ function MoviesShowsProvider({ children }: Context): JSX.Element {
 
   const getItemsData = (queryType: string): Promise<void> =>
     getItems(queryType as QueryType, state.contentType as ContentType, state.search)
-      .then(({ results }) => {
+      .then(({ data: { results } }) => {
         const items = queryType === QUERY_TYPE.TOP_RATED ? results.slice(0, NUMBER_OF_ITEMS) : results;
 
         if (state.contentType === CONTENT_TYPE.TV_SHOW) {

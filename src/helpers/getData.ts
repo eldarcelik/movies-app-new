@@ -1,9 +1,7 @@
-import { handleResponse } from './';
+import type { AxiosResponse } from 'axios';
 
-const getData = async <R>(url: string): Promise<R> => {
-  const response = await fetch(url);
+import axiosInstance from '@/axiosInstance';
 
-  return handleResponse<R>(response);
-};
+const getData = async <T>(url: string): Promise<AxiosResponse<T>> => axiosInstance.get<T>(url);
 
 export default getData;
