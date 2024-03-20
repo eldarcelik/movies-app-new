@@ -13,33 +13,31 @@ import MovieOrShow from './pages/MovieOrShow';
 
 function App(): JSX.Element {
   return (
-    <>
-      <MoviesShowsProvider>
-        <Router>
-          <Routes>
-            <Route
-              path='/'
-              element={
-                <PrivateRoute>
-                  <Home />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path='/:content/:id'
-              element={
-                <PrivateRoute>
-                  <MovieOrShow />
-                </PrivateRoute>
-              }
-            />
-            <Route path='/registration' element={<Registration />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='*' element={<Error />} />
-          </Routes>
-        </Router>
-      </MoviesShowsProvider>
-    </>
+    <MoviesShowsProvider>
+      <Router>
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path='/:content/:id'
+            element={
+              <PrivateRoute>
+                <MovieOrShow />
+              </PrivateRoute>
+            }
+          />
+          <Route path='/registration' element={<Registration />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='*' element={<Error />} />
+        </Routes>
+      </Router>
+    </MoviesShowsProvider>
   );
 }
 
