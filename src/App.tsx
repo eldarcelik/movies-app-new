@@ -2,17 +2,18 @@ import React from 'react';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+import PrivateRoute from '@/components/PrivateRoute';
+import { MoviesShowsProvider } from '@/context';
+import Login from '@/pages/Account/Login';
+import Registration from '@/pages/Account/Registration';
+import Error from '@/pages/Error/Error';
+import Home from '@/pages/Home';
+import MovieOrShow from '@/pages/MovieOrShow';
+import Unauthorized from '@/pages/Unauthorized';
+
 import './App.css';
-import PrivateRoute from './components/PrivateRoute';
-import { MoviesShowsProvider } from './context';
-import Login from './pages/Account/Login';
-import Registration from './pages/Account/Registration';
 import RequestResetPassword from './pages/Account/RequestResetPassword';
 import ResetPassword from './pages/Account/ResetPassword';
-import Error from './pages/Error/Error';
-import Home from './pages/Home';
-import MovieOrShow from './pages/MovieOrShow';
-import Unauthorized from './pages/Unauthorized';
 
 function App(): JSX.Element {
   return (

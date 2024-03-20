@@ -4,12 +4,6 @@ export interface ILogin {
   refreshToken: string;
 }
 
-export interface ILoginState {
-  accessToken: string | null;
-  expires: number | null;
-  refreshToken: string | null;
-}
-
 export interface ILoginResponse {
   data: ILogin;
 }
