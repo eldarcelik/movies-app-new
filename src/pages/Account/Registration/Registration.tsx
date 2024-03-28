@@ -9,7 +9,7 @@ import Field from '@/components/Field';
 import { DELAY, ERROR_CODES, MESSAGES, REGISTRATION_FIELDS, STATUS_CODES } from '@/constants/constantValues';
 import { registrationSchema } from '@/helpers';
 
-import { IRegister } from './types';
+import type { IRegister } from './types';
 import '../Account.css';
 import type { IAccountInfo, IUser } from '../types';
 

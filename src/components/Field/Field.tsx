@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FieldErrors, FieldValues, Path, UseFormRegister } from 'react-hook-form';
+import type { FieldErrors, FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
 interface IField<T extends FieldValues> {
   id: string;
